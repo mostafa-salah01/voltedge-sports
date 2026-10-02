@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VoltEdge Sports | أداء بلا حدود</title>
+  <meta name="description" content="متجر رياضي عالمي للأداء العالي وتجهيزات التدريب واللياقة البدنية - أداء بلا حدود" />
+  <meta property="og:title" content="VoltEdge Sports | أداء بلا حدود" />
+  <meta property="og:description" content="متجر رياضي عالمي للأداء العالي وتجهيزات التدريب واللياقة البدنية" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Google Fonts: Cairo & Tajawal -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            volt: '#A3E635',
+            'volt-hover': '#86efac',
+            brandBlack: '#0A0A0A',
+            brandFooter: '#1F2937',
+            brandGray: '#F3F4F6',
+          },
+          fontFamily: {
+            heading: ['Cairo', 'sans-serif'],
+            body: ['Tajawal', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Tajawal', sans-serif;
+      background-color: #0A0A0A;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+    h1, h2, h3, h4, h5, h6, .font-heading {
+      font-family: 'Cairo', sans-serif;
+    }
+    .sport-pattern {
+      background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0, rgba(255,255,255,0.04) 2px, transparent 0, transparent 14px);
+    }
+    .text-volt {
+      color: #A3E635;
+    }
+    .bg-volt {
+      background-color: #A3E635;
+    }
+    .border-volt {
+      border-color: #A3E635;
+    }
+    .pulse-badge {
+      animation: badgePulse 0.4s ease-in-out;
+    }
+    @keyframes badgePulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.35); }
+      100% { transform: scale(1); }
+    }
+    .page-fade {
+      animation: fadeIn 0.35s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-text-anim {
+      animation: heroSlide 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes heroSlide {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .page-fade, .hero-text-anim, .pulse-badge {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-volt selection:text-black">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/10 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Right: Navigation Links (Desktop) -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold tracking-wide">
+        <a href="#/home" data-route="home" class="nav-link py-2 border-b-2 border-transparent hover:text-volt transition-colors">الرئيسية</a>
+        <a href="#/men" data-route="men" class="nav-link py-2 border-b-2 border-transparent hover:text-volt transition-colors">رجال</a>
+        <a href="#/women" data-route="women" class="nav-link py-2 border-b-2 border-transparent hover:text-volt transition-colors">نساء</a>
+        <a href="#/equipment" data-route="equipment" class="nav-link py-2 border-b-2 border-transparent hover:text-volt transition-colors">تجهيزات رياضية</a>
+        <a href="#/active" data-route="active" class="nav-link py-2 border-b-2 border-transparent hover:text-volt transition-colors">المجموعة النشطة</a>
+      </nav>
+
+      <!-- Center / Left: Brand Logo -->
+      <a href="#/home" class="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt rounded p-1">
+        <span class="text-2xl sm:text-3xl font-black italic tracking-tighter text-white group-hover:text-volt transition-colors font-heading">
+          VoltEdge
+        </span>
+        <span class="text-xs font-black tracking-widest text-[#0A0A0A] bg-volt px-1.5 py-0.5 rounded uppercase font-heading">
+          SPORTS
+        </span>
+      </a>
+
+      <!-- Left: Actions (Cart & Mobile Toggle) -->
+      <div class="flex items-center gap-4">
+        <!-- Cart Button -->
+        <a href="#/cart" id="nav-cart-btn" class="relative p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center justify-center focus-visible:ring-2 focus-visible:ring-volt" aria-label="سلة التسوق">
+          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+          </svg>
+          <span id="cart-counter" class="absolute -top-1.5 -left-1.5 bg-volt text-[#0A0A0A] font-black text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-lg font-heading">
+            0
+          </span>
+        </a>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button id="mobile-menu-btn" type="button" class="md:hidden p-2 rounded-lg bg-white/5 border border-white/10 text-white hover:text-volt focus-visible:ring-2 focus-visible:ring-volt" aria-label="فتح القائمة">
+          <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+          </svg>
+          <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobile-drawer" class="hidden md:hidden bg-[#0A0A0A] border-b border-white/10 px-6 py-6 transition-all">
+      <div class="flex flex-col gap-4 text-base font-semibold">
+        <a href="#/home" data-route="home" class="mobile-nav-link py-2 border-r-4 border-transparent pr-3 hover:text-volt">الرئيسية</a>
+        <a href="#/men" data-route="men" class="mobile-nav-link py-2 border-r-4 border-transparent pr-3 hover:text-volt">رجال</a>
+        <a href="#/women" data-route="women" class="mobile-nav-link py-2 border-r-4 border-transparent pr-3 hover:text-volt">نساء</a>
+        <a href="#/equipment" data-route="equipment" class="mobile-nav-link py-2 border-r-4 border-transparent pr-3 hover:text-volt">تجهيزات رياضية</a>
+        <a href="#/active" data-route="active" class="mobile-nav-link py-2 border-r-4 border-transparent pr-3 hover:text-volt">المجموعة النشطة</a>
+        <a href="#/cart" data-route="cart" class="mobile-nav-link py-2 border-r-4 border-transparent pr-3 hover:text-volt flex items-center justify-between">
+          <span>سلة التسوق</span>
+          <span id="mobile-cart-badge" class="bg-volt text-black text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN VIEWPORT CONTAINER (Pages injected here via JS routing) -->
+  <main id="app" class="flex-1 w-full min-h-[70vh]">
+    <!-- Dynamic page content will be rendered here -->
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 bg-[#0A0A0A] border-2 border-volt text-white px-6 py-3.5 rounded-xl shadow-2xl">
+    <span class="w-3 h-3 rounded-full bg-volt animate-ping"></span>
+    <span id="toast-message" class="font-bold text-sm">تمت الإضافة إلى السلة بنجاح</span>
+  </div>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="bg-[#121212] border border-volt/40 rounded-2xl max-w-md w-full p-8 text-center shadow-2xl relative">
+      <div class="w-16 h-16 bg-volt/20 text-volt rounded-full flex items-center justify-center mx-auto mb-5">
+        <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-black text-white font-heading mb-2">تم تأكيد طلبك <span class="text-volt">بنجاح!</span></h3>
+      <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+        شكرًا لاختيارك VoltEdge Sports. تم استلام طلبك وجارٍ تجهيزه وشحنه خلال 48 ساعة. ستصلك رسالة تأكيد عبر الهاتف.
+      </p>
+      <div class="bg-white/5 rounded-xl p-4 text-right mb-6 text-xs text-gray-300 space-y-1">
+        <div class="flex justify-between"><span>رقم الشحنة:</span><span class="font-mono text-volt font-bold">#VE-98421</span></div>
+        <div class="flex justify-between"><span>طريقة الدفع:</span><span>الدفع عند الاستلام</span></div>
+        <div class="flex justify-between"><span>الشحن:</span><span class="text-volt">مجاني وسريع</span></div>
+      </div>
+      <button onclick="closeCheckoutModal()" class="w-full bg-volt text-[#0A0A0A] font-black py-3 rounded-xl hover:bg-volt-hover transition font-heading">
+        متابعة التسوق
+      </button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="relative bg-brandFooter text-white mt-auto overflow-hidden border-t border-white/10">
+    <!-- Background image with low opacity -->
+    <img src="images/hero-sports.jfif" alt="خلفية تذييل الموقع" loading="lazy" class="absolute inset-0 w-full h-full object-cover opacity-15 filter grayscale z-0" />
+    <div class="absolute inset-0 bg-gradient-to-t from-brandFooter via-brandFooter/95 to-brandFooter/80 z-0"></div>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10">
+        
+        <!-- Brand summary -->
+        <div class="md:col-span-1 space-y-4">
+          <div class="flex items-center gap-2">
+            <span class="text-3xl font-black italic tracking-tighter text-white font-heading">VoltEdge</span>
+            <span class="text-xs font-black tracking-widest text-[#0A0A0A] bg-volt px-1.5 py-0.5 rounded font-heading">SPORTS</span>
+          </div>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            العلامة الرياضية المخصصة للرياضيين الحقيقيين. نبتكر معدات وأزياء تدريب تعزز قدرتك على كسر حدودك يوميًا.
+          </p>
+          <!-- Social icons -->
+          <div class="flex items-center gap-3 pt-2">
+            <a href="#" aria-label="Instagram" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-volt hover:text-black flex items-center justify-center transition">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" aria-label="X Twitter" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-volt hover:text-black flex items-center justify-center transition">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube" class="w-9 h-9 rounded-lg bg-white/5 hover:bg-volt hover:text-black flex items-center justify-center transition">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-base font-bold text-white font-heading mb-4 border-r-2 border-volt pr-2">تسوّق الأقسام</h4>
+          <ul class="space-y-2.5 text-sm text-gray-400">
+            <li><a href="#/men" class="hover:text-volt transition">أحذية وملابس الرجال</a></li>
+            <li><a href="#/women" class="hover:text-volt transition">المجموعات النسائية</a></li>
+            <li><a href="#/equipment" class="hover:text-volt transition">معدات النادي المنزلي</a></li>
+            <li><a href="#/active" class="hover:text-volt transition">المجموعة النشطة - إصدار محدود</a></li>
+            <li><a href="#/cart" class="hover:text-volt transition">سلة الشراء والدفع</a></li>
+          </ul>
+        </div>
+
+        <!-- Support -->
+        <div>
+          <h4 class="text-base font-bold text-white font-heading mb-4 border-r-2 border-volt pr-2">خدمة العملاء</h4>
+          <ul class="space-y-2.5 text-sm text-gray-400">
+            <li><span class="text-gray-300">الشحن والتوصيل:</span> خلال 48 ساعة بالمملكة</li>
+            <li><span class="text-gray-300">الاستبدال:</span> مجاني خلال 14 يوماً</li>
+            <li><span class="text-gray-300">الضمان:</span> ضمان لمدة سنتين على الأجهزة</li>
+            <li><span class="text-gray-300">الدعم الفني:</span> support@voltedge.com</li>
+          </ul>
+        </div>
+
+        <!-- Payment Badges -->
+        <div>
+          <h4 class="text-base font-bold text-white font-heading mb-4 border-r-2 border-volt pr-2">الدفع الآمن</h4>
+          <p class="text-xs text-gray-400 mb-4">نوفر خيارات دفع رقمية مشفرة بالكامل والدفع عند الاستلام داخل جميع مناطق المملكة.</p>
+          <div class="flex items-center gap-3">
+            <!-- Visa SVG -->
+            <div class="bg-white rounded-lg px-2.5 py-1.5 flex items-center justify-center h-8">
+              <svg class="h-4 w-12" viewBox="0 0 36 12" fill="none">
+                <path d="M14.65 0.5L12.44 11.5H9.68L11.89 0.5H14.65ZM24.47 7.76L25.92 3.82C25.92 3.82 26.33 2.72 26.54 2.14L26.79 3.32L27.66 7.76H24.47ZM28.51 11.5H31L28.84 0.5H26.35C25.68 0.5 25.1 0.9 24.86 1.48L21.23 11.5H24.16L24.75 9.87H28.16L28.51 11.5ZM21.94 4.09C21.91 2.52 20.31 1.74 18.75 1.74C17.06 1.74 15.54 2.65 15.54 4.14C15.54 6.2 18.42 6.13 18.42 7.71C18.42 8.35 17.7 8.87 16.89 8.87C15.53 8.87 14.59 8.19 14.59 8.19L14.15 10.36C14.15 10.36 15.36 10.87 16.78 10.87C19.86 10.87 21.96 9.38 21.94 7.29C21.94 4.8 18.89 4.95 18.89 3.82C18.89 3.27 19.46 2.87 20.17 2.87C21.1 2.87 21.84 3.3 21.84 3.3L21.94 4.09ZM8.84 0.5L6.15 8.01L5.85 6.47C5.35 4.75 3.87 2.88 2.18 1.98L4.69 11.5H7.66L11.77 0.5H8.84Z" fill="#1A1F71"/>
+              </svg>
+            </div>
+            <!-- Mastercard SVG -->
+            <div class="bg-white rounded-lg px-2 py-1 flex items-center justify-center h-8">
+              <svg class="h-6 w-10" viewBox="0 0 32 20" fill="none">
+                <circle cx="10" cy="10" r="10" fill="#EB001B"/>
+                <circle cx="22" cy="10" r="10" fill="#F79E1B" fill-opacity="0.9"/>
+              </svg>
+            </div>
+            <!-- Mada / Cash badge -->
+            <div class="bg-white/10 text-volt text-xs font-black px-2.5 py-1.5 rounded-lg border border-white/10 font-heading">
+              مدى / نقداً
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between text-xs text-gray-500 gap-4">
+        <p>© 2026 VoltEdge Sports. جميع الحقوق محفوظة. صُمم وصُنع للرياضيين المحترفين.</p>
+        <p class="text-gray-400">شعارنا: <span class="text-volt font-bold">أداء بلا حدود</span></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT APPLICATION LOGIC -->
+  <script>
+    // -------------------------------------------------------------
+    // 1. PRODUCTS & STORE DATA
+    // -------------------------------------------------------------
+    const PRODUCTS = [
+      // Home core featured
+      { id: 1, name: 'حذاء جري ديناميكي', price: 649, rating: '5.0', image: 'images/prod-shoe.jfif', category: 'men', tag: 'أحذية' },
+      { id: 2, name: 'مجموعة أوزان ذكية', price: 1299, rating: '4.9', image: 'images/prod-weights.jfif', category: 'equipment', tag: 'أوزان' },
+      { id: 3, name: 'سماعات رياضية لاسلكية', price: 299, rating: '5.0', image: 'images/prod-earbuds.jfif', category: 'active', tag: 'إكسسوارات' },
+      { id: 4, name: 'مشروب بروتين عضوي', price: 149, rating: '4.8', image: 'images/prod-protein.jfif', category: 'active', tag: 'تغذية' },
+
+      // Men category products
+      { id: 101, name: 'حذاء كربون برو للسباقات', price: 899, rating: '5.0', image: 'images/prod-shoe.jfif', category: 'men', tag: 'أحذية' },
+      { id: 102, name: 'قميص ضغط دراي-فِت', price: 189, rating: '4.8', image: 'images/hero-sports.jfif', category: 'men', tag: 'ملابس تدريب' },
+      { id: 103, name: 'بنطال تدريب مضلع ثيرمو', price: 289, rating: '4.9', image: 'images/prod-shoe.jfif', category: 'men', tag: 'ملابس تدريب' },
+      { id: 104, name: 'حذاء رفع أثقال ماكس', price: 749, rating: '5.0', image: 'images/prod-weights.jfif', category: 'men', tag: 'أحذية' },
+      { id: 105, name: 'سماعة عازلة للضوضاء الرياضية', price: 349, rating: '4.9', image: 'images/prod-earbuds.jfif', category: 'men', tag: 'إكسسوارات' },
+      { id: 106, name: 'مكمل كيراتين ونقي', price: 179, rating: '4.7', image: 'images/prod-protein.jfif', category: 'men', tag: 'إكسسوارات' },
+
+      // Women category products
+      { id: 201, name: 'طقم يوغا سلس عالي الخصر', price: 319, rating: '5.0', image: 'images/hero-sports.jfif', category: 'women', tag: 'يوغا' },
+      { id: 202, name: 'حذاء جري خفيف سبيد لايت', price: 629, rating: '4.9', image: 'images/prod-shoe.jfif', category: 'women', tag: 'جري' },
+      { id: 203, name: 'سماعات إيربودز رياضية مقاومة للتعرق', price: 299, rating: '5.0', image: 'images/prod-earbuds.jfif', category: 'women', tag: 'إكسسوارات' },
+      { id: 204, name: 'سترة رياضية مقاومة للرياح', price: 379, rating: '4.8', image: 'images/hero-sports.jfif', category: 'women', tag: 'جري' },
+      { id: 205, name: 'بروتين نقي نباتي عضوي', price: 169, rating: '4.9', image: 'images/prod-protein.jfif', category: 'women', tag: 'لياقة' },
+      { id: 206, name: 'أوزان معصم وكاحل سيليكون', price: 149, rating: '4.8', image: 'images/prod-weights.jfif', category: 'women', tag: 'لياقة' },
+
+      // Equipment category products
+      { id: 301, name: 'مجموعة أوزان قابلة للتعديل 32 كجم', price: 1299, rating: '5.0', image: 'images/prod-weights.jfif', category: 'equipment', tag: 'أوزان' },
+      { id: 302, name: 'حبل قفز احترافي مع محامل سرعة', price: 119, rating: '4.9', image: 'images/hero-sports.jfif', category: 'equipment', tag: 'حبال' },
+      { id: 303, name: 'سجادة تمرين فائقة الكثافة والتبطين', price: 219, rating: '4.8', image: 'images/prod-shoe.jfif', category: 'equipment', tag: 'سجادات' },
+      { id: 304, name: 'حزام رفع أثقال جلدي مدعم', price: 249, rating: '5.0', image: 'images/prod-weights.jfif', category: 'equipment', tag: 'أحزمة' },
+      { id: 305, name: 'حقيبة كيتل بل احترافية 16 كجم', price: 359, rating: '4.9', image: 'images/prod-weights.jfif', category: 'equipment', tag: 'أوزان' },
+      { id: 306, name: 'حبال مقاومة مطاطية 5 مستويات', price: 139, rating: '4.7', image: 'images/prod-earbuds.jfif', category: 'equipment', tag: 'حبال' },
+    ];
+
+    // Bundles for Active page
+    const BUNDLES = [
+      { id: 401, name: 'باقة العدّاء المتكاملة', price: 849, oldPrice: 1047, image: 'images/prod-shoe.jfif', items: 'حذاء كربون برو + سماعات رياضية + زجاجة شيكر' },
+      { id: 402, name: 'باقة القوة وكمال الأجسام', price: 1499, oldPrice: 1747, image: 'images/prod-weights.jfif', items: 'مجموعة أوزان ذكية + حزام جلدي + بروتين عضوي' },
+      { id: 403, name: 'باقة اللياقة الشاملة', price: 999, oldPrice: 1216, image: 'images/hero-sports.jfif', items: 'حبل سرعة + سجادة سميكة + بروتين + سماعات' }
+    ];
+
+    // -------------------------------------------------------------
+    // 2. STATE & CART MANAGEMENT
+    // -------------------------------------------------------------
+    let cart = [];
+    try {
+      const stored = localStorage.getItem('voltedge_cart');
+      if (stored) cart = JSON.parse(stored);
+    } catch(e) {
+      console.warn('localStorage not accessible, using memory state');
+      cart = [];
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem('voltedge_cart', JSON.stringify(cart));
+      } catch(e) {}
+      updateCartBadge();
+    }
+
+    function addToCart(productId) {
+      // Find either in products or bundles
+      let item = PRODUCTS.find(p => p.id === productId);
+      if (!item) {
+        const bundle = BUNDLES.find(b => b.id === productId);
+        if (bundle) {
+          item = { id: bundle.id, name: bundle.name, price: bundle.price, image: bundle.image, rating: '5.0' };
+        }
+      }
+      if (!item) return;
+
+      const existing = cart.find(i => i.id === productId);
+      if (existing) {
+        existing.quantity += 1;
+      } else {
+        cart.push({ ...item, quantity: 1 });
+      }
+
+      saveCart();
+      showToast(`تمت إضافة "${item.name}" إلى السلة`);
+      triggerBadgePulse();
+    }
+
+    function updateQuantity(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+      item.quantity += delta;
+      if (item.quantity <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      saveCart();
+      if (window.location.hash === '#/cart') {
+        renderCartPage();
+      }
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      saveCart();
+      if (window.location.hash === '#/cart') {
+        renderCartPage();
+      }
+      showToast('تم حذف المنتج من السلة');
+    }
+
+    function updateCartBadge() {
+      const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+      const badge = document.getElementById('cart-counter');
+      const mobileBadge = document.getElementById('mobile-cart-badge');
+      if (badge) badge.textContent = totalCount;
+      if (mobileBadge) mobileBadge.textContent = totalCount;
+    }
+
+    function triggerBadgePulse() {
+      const badge = document.getElementById('cart-counter');
+      if (badge) {
+        badge.classList.remove('pulse-badge');
+        void badge.offsetWidth; // re-flow
+        badge.classList.add('pulse-badge');
+      }
+    }
+
+    let toastTimeout;
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = message;
+      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+      }, 2500);
+    }
+
+    function openCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      if (modal) {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeCheckoutModal() {
+      const modal = document.getElementById('checkout-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+      cart = [];
+      saveCart();
+      window.location.hash = '#/home';
+    }
+
+    // -------------------------------------------------------------
+    // 3. STATS COUNTER ANIMATION
+    // -------------------------------------------------------------
+    function animateCounters() {
+      const counters = document.querySelectorAll('.stat-counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'), 10);
+        const prefix = counter.getAttribute('data-prefix') || '';
+        const suffix = counter.getAttribute('data-suffix') || '';
+        let count = 0;
+        const duration = 1200;
+        const step = Math.max(1, Math.floor(target / (duration / 25)));
+        const timer = setInterval(() => {
+          count += step;
+          if (count >= target) {
+            counter.textContent = prefix + target + suffix;
+            clearInterval(timer);
+          } else {
+            counter.textContent = prefix + count + suffix;
+          }
+        }, 25);
+      });
+    }
+
+    // -------------------------------------------------------------
+    // 4. INTERSECTION OBSERVER FOR FADE-IN
+    // -------------------------------------------------------------
+    function observeScrollElements() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('page-fade');
+            if (entry.target.querySelector('.stat-counter')) {
+              animateCounters();
+            }
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.reveal-on-scroll').forEach(el => observer.observe(el));
+    }
+
+    // -------------------------------------------------------------
+    // 5. COUNTDOWN TIMER (FOR ACTIVE PAGE)
+    // -------------------------------------------------------------
+    let countdownInterval;
+    function startCountdown() {
+      clearInterval(countdownInterval);
+      let totalSeconds = 24 * 3600 + 45 * 60 + 30; // 24h 45m 30s
+      function tick() {
+        const h = Math.floor(totalSeconds / 3600);
+        const m = Math.floor((totalSeconds % 3600) / 60);
+        const s = totalSeconds % 60;
+        const hEl = document.getElementById('count-hours');
+        const mEl = document.getElementById('count-mins');
+        const sEl = document.getElementById('count-secs');
+        if (hEl && mEl && sEl) {
+          hEl.textContent = String(h).padStart(2, '0');
+          mEl.textContent = String(m).padStart(2, '0');
+          sEl.textContent = String(s).padStart(2, '0');
+        }
+        if (totalSeconds > 0) totalSeconds--;
+      }
+      tick();
+      countdownInterval = setInterval(tick, 1000);
+    }
+
+    // -------------------------------------------------------------
+    // 6. FILTERING LOGIC FOR CATEGORY PAGES
+    // -------------------------------------------------------------
+    let currentFilter = 'all';
+    let currentSort = 'none';
+
+    function setFilter(cat, filterValue) {
+      currentFilter = filterValue;
+      renderProductsGrid(cat);
+      // Update filter tabs UI
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === filterValue) {
+          btn.className = 'filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-volt text-[#0A0A0A] transition';
+        } else {
+          btn.className = 'filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition';
+        }
+      });
+    }
+
+    function setSort(cat, sortValue) {
+      currentSort = sortValue;
+      renderProductsGrid(cat);
+    }
+
+    function renderProductsGrid(category) {
+      const container = document.getElementById('category-products-grid');
+      if (!container) return;
+
+      let list = PRODUCTS.filter(p => p.category === category);
+      if (currentFilter !== 'all') {
+        list = list.filter(p => p.tag === currentFilter);
+      }
+
+      if (currentSort === 'asc') {
+        list.sort((a, b) => a.price - b.price);
+      } else if (currentSort === 'desc') {
+        list.sort((a, b) => b.price - a.price);
+      }
+
+      if (list.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center text-gray-400">
+            <p class="text-lg">لا توجد منتجات تطابق الفلتر المختار.</p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = list.map(item => `
+        <div class="group relative rounded-2xl overflow-hidden aspect-[3/4] bg-neutral-900 border border-white/10 shadow-xl transition-all duration-300 hover:-translate-y-1.5 hover:shadow-2xl">
+          <!-- Background image inside card -->
+          <img src="${item.image}" alt="${item.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 ease-out group-hover:scale-108" />
+          
+          <!-- Gradient and pattern overlays for maximum legibility -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent z-10 pointer-events-none"></div>
+          <div class="absolute inset-0 sport-pattern z-10 pointer-events-none"></div>
+
+          <!-- Tag badge top right -->
+          <div class="absolute top-4 right-4 z-20">
+            <span class="text-xs font-bold bg-black/60 backdrop-blur-md border border-white/15 text-gray-200 px-3 py-1 rounded-full">
+              ${item.tag}
+            </span>
+          </div>
+
+          <!-- Rating top left -->
+          <div class="absolute top-4 left-4 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-xs text-volt font-bold">
+            <span>★</span>
+            <span class="text-white">${item.rating}</span>
+          </div>
+
+          <!-- Content at bottom inside image -->
+          <div class="absolute bottom-0 inset-x-0 p-5 z-20 flex flex-col justify-end text-right">
+            <h3 class="text-lg font-black text-white font-heading mb-1 line-clamp-1">${item.name}</h3>
+            <div class="flex items-center justify-between mt-2">
+              <span class="text-xl font-black text-volt font-heading">${item.price} <span class="text-xs font-normal text-gray-300">ر.س</span></span>
+              <button onclick="addToCart(${item.id})" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2.5 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow-lg flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-white">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
+                <span>أضف للسلة</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // -------------------------------------------------------------
+    // 7. ROUTING AND VIEW RENDERING
+    // -------------------------------------------------------------
+    const routes = {
+      'home': renderHomePage,
+      'men': renderMenPage,
+      'women': renderWomenPage,
+      'equipment': renderEquipmentPage,
+      'active': renderActivePage,
+      'cart': renderCartPage,
+    };
+
+    function navigate() {
+      const hash = window.location.hash || '#/home';
+      const routeName = hash.replace('#/', '').split('?')[0] || 'home';
+      const handler = routes[routeName] || renderHomePage;
+      
+      // Update Active Navigation styling
+      document.querySelectorAll('.nav-link').forEach(link => {
+        if (link.getAttribute('data-route') === routeName) {
+          link.classList.remove('border-transparent');
+          link.classList.add('border-volt', 'text-volt');
+        } else {
+          link.classList.add('border-transparent');
+          link.classList.remove('border-volt', 'text-volt');
+        }
+      });
+      document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        if (link.getAttribute('data-route') === routeName) {
+          link.classList.remove('border-transparent');
+          link.classList.add('border-volt', 'text-volt');
+        } else {
+          link.classList.add('border-transparent');
+          link.classList.remove('border-volt', 'text-volt');
+        }
+      });
+
+      // Close mobile menu on navigate
+      const drawer = document.getElementById('mobile-drawer');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+      if (drawer && !drawer.classList.contains('hidden')) {
+        drawer.classList.add('hidden');
+        if (openIcon) openIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+      }
+
+      // Scroll top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      // Render view
+      handler();
+      observeScrollElements();
+      updateCartBadge();
+    }
+
+    // -------------------------------------------------------------
+    // PAGE 1: HOME
+    // -------------------------------------------------------------
+    function renderHomePage() {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="page-fade">
+          <!-- 1. FULLSCREEN HERO SECTION (Text ON TOP of Image) -->
+          <section class="w-full min-h-[85vh] relative overflow-hidden flex items-center">
+            <!-- Full Background Image -->
+            <img src="images/hero-sports.jfif" alt="رياضيون محترفون يتمرنون بأقصى أداء" class="absolute inset-0 w-full h-full object-cover z-0 brightness-95" />
+            
+            <!-- Dark directional gradient + Sporty pattern -->
+            <div class="absolute inset-0 bg-gradient-to-l from-black/90 via-black/60 to-transparent z-0"></div>
+            <div class="absolute inset-0 sport-pattern z-0 opacity-40"></div>
+
+            <!-- Content Container -->
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+              <div class="max-w-2xl text-right hero-text-anim">
+                
+                <!-- Kicker / Badge -->
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-volt/30 backdrop-blur-md mb-6">
+                  <span class="w-2 h-2 rounded-full bg-volt animate-ping"></span>
+                  <span class="text-xs font-bold text-gray-200">VoltEdge Sports · أداء بلا حدود</span>
+                </div>
+
+                <!-- Main Giant Heading with Lime Keyword -->
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-heading leading-tight tracking-tight mb-6">
+                  أطلق العنان <span class="text-volt">لقوتك:</span> اكتشف الأداء الحقيقي
+                </h1>
+
+                <!-- Subtitle -->
+                <p class="text-lg sm:text-xl text-gray-300 mb-8 font-medium leading-relaxed max-w-xl">
+                  تجهّز بأحدث الابتكارات من VoltEdge. صُممت منتجاتنا للرياضيين الذين يرفضون الاستسلام ويبحثون عن الانتصار في كل جولة.
+                </p>
+
+                <!-- Action CTA Buttons -->
+                <div class="flex flex-wrap items-center gap-4">
+                  <a href="#/men" class="bg-volt text-[#0A0A0A] font-black text-base px-8 py-4 rounded-xl shadow-lg hover:bg-volt-hover active:scale-95 transition font-heading flex items-center gap-2">
+                    <span>تسوق الآن</span>
+                    <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                  </a>
+                  <a href="#/active" class="border-2 border-white/60 hover:border-volt text-white hover:text-volt font-bold text-base px-7 py-3.5 rounded-xl backdrop-blur-sm transition font-heading">
+                    اكتشف المجموعات
+                  </a>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. OVERLAPPING FEATURED PRODUCTS CARDS (-mt-16 over hero) -->
+          <section class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 mb-20">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              <!-- Card 1 -->
+              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+                <div>
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                    <img src="images/prod-shoe.jfif" alt="حذاء جري ديناميكي" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+                    <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                      ★ 5.0
+                    </span>
+                  </div>
+                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">حذاء جري ديناميكي</h3>
+                  <p class="text-xs text-neutral-500 mb-3">ألياف كربونية واستجابة ارتدادية فائقة</p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                  <span class="font-black text-xl text-neutral-950 font-heading">649 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(1)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                    <span>إضافة للسلة</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 2 -->
+              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+                <div>
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                    <img src="images/prod-weights.jfif" alt="مجموعة أوزان ذكية" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+                    <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                      ★ 4.9
+                    </span>
+                  </div>
+                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">مجموعة أوزان ذكية</h3>
+                  <p class="text-xs text-neutral-500 mb-3">تعديل وزن فوري بمقبض أمان دوّار</p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                  <span class="font-black text-xl text-neutral-950 font-heading">1299 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(2)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                    <span>إضافة للسلة</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 3 -->
+              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+                <div>
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                    <img src="images/prod-earbuds.jfif" alt="سماعات رياضية لاسلكية" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+                    <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                      ★ 5.0
+                    </span>
+                  </div>
+                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">سماعات رياضية لاسلكية</h3>
+                  <p class="text-xs text-neutral-500 mb-3">ثبات تام ومقاومة كاملة للتعرق والماء</p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                  <span class="font-black text-xl text-neutral-950 font-heading">299 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(3)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                    <span>إضافة للسلة</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 4 -->
+              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+                <div>
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                    <img src="images/prod-protein.jfif" alt="مشروب بروتين عضوي" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
+                    <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                      ★ 4.8
+                    </span>
+                  </div>
+                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">مشروب بروتين عضوي</h3>
+                  <p class="text-xs text-neutral-500 mb-3">28 جم بروتين نقي سريع الامتصاص</p>
+                </div>
+                <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                  <span class="font-black text-xl text-neutral-950 font-heading">149 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(4)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                    <span>إضافة للسلة</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </section>
+
+          <!-- 3. CATEGORIES SECTION (4 Big Tiles with Text INSIDE Image) -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal-on-scroll">
+            <div class="text-right mb-10">
+              <span class="text-volt font-bold text-sm tracking-widest uppercase">التصنيفات الحصرية</span>
+              <h2 class="text-3xl sm:text-5xl font-black text-white font-heading mt-2">
+                اختر مسارك <span class="text-volt">الرياضي</span>
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              
+              <!-- Tile 1: Men -->
+              <a href="#/men" class="group relative rounded-2xl overflow-hidden h-96 flex items-end p-6 border border-white/10 shadow-xl transition-all duration-300 hover:border-volt/50">
+                <img src="images/prod-shoe.jfif" alt="تصنيف ملابس وأحذية الرجال" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-110 filter brightness-90" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+                <div class="relative z-20 text-right w-full">
+                  <span class="text-xs text-volt font-bold uppercase tracking-wider block mb-1">المجموعة الاحترافية</span>
+                  <h3 class="text-2xl font-black text-white font-heading group-hover:text-volt transition">رجال</h3>
+                  <p class="text-xs text-gray-300 mt-1 flex items-center gap-1">
+                    <span>استكشف المجموعة</span>
+                    <span class="text-volt">←</span>
+                  </p>
+                </div>
+              </a>
+
+              <!-- Tile 2: Women -->
+              <a href="#/women" class="group relative rounded-2xl overflow-hidden h-96 flex items-end p-6 border border-white/10 shadow-xl transition-all duration-300 hover:border-volt/50">
+                <img src="images/prod-earbuds.jfif" alt="تصنيف اللياقة واليوغا للنساء" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-110 filter contrast-105" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+                <div class="relative z-20 text-right w-full">
+                  <span class="text-xs text-volt font-bold uppercase tracking-wider block mb-1">أناقة وقوة</span>
+                  <h3 class="text-2xl font-black text-white font-heading group-hover:text-volt transition">نساء</h3>
+                  <p class="text-xs text-gray-300 mt-1 flex items-center gap-1">
+                    <span>استكشف المجموعة</span>
+                    <span class="text-volt">←</span>
+                  </p>
+                </div>
+              </a>
+
+              <!-- Tile 3: Equipment -->
+              <a href="#/equipment" class="group relative rounded-2xl overflow-hidden h-96 flex items-end p-6 border border-white/10 shadow-xl transition-all duration-300 hover:border-volt/50">
+                <img src="images/prod-weights.jfif" alt="تجهيزات النادي المنزلي" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-110 filter brightness-95" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+                <div class="relative z-20 text-right w-full">
+                  <span class="text-xs text-volt font-bold uppercase tracking-wider block mb-1">معدات متقدمة</span>
+                  <h3 class="text-2xl font-black text-white font-heading group-hover:text-volt transition">تجهيزات رياضية</h3>
+                  <p class="text-xs text-gray-300 mt-1 flex items-center gap-1">
+                    <span>استكشف المعدات</span>
+                    <span class="text-volt">←</span>
+                  </p>
+                </div>
+              </a>
+
+              <!-- Tile 4: Active -->
+              <a href="#/active" class="group relative rounded-2xl overflow-hidden h-96 flex items-end p-6 border border-white/10 shadow-xl transition-all duration-300 hover:border-volt/50">
+                <img src="images/hero-sports.jfif" alt="المجموعة النشطة - إصدار محدود" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-110 filter brightness-90" />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+                <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+                <div class="relative z-20 text-right w-full">
+                  <span class="text-xs text-volt font-bold uppercase tracking-wider block mb-1">إصدار محدود</span>
+                  <h3 class="text-2xl font-black text-white font-heading group-hover:text-volt transition">المجموعة النشطة</h3>
+                  <p class="text-xs text-gray-300 mt-1 flex items-center gap-1">
+                    <span>تصفح الباقات</span>
+                    <span class="text-volt">←</span>
+                  </p>
+                </div>
+              </a>
+
+            </div>
+          </section>
+
+          <!-- 4. STATS STRIP (Text OVER Blurred Background Image) -->
+          <section class="relative py-20 overflow-hidden reveal-on-scroll">
+            <img src="images/prod-shoe.jfif" alt="خلفية شريط الإحصائيات" loading="lazy" class="absolute inset-0 w-full h-full object-cover filter blur-md brightness-35 z-0" />
+            <div class="absolute inset-0 bg-black/75 z-0"></div>
+            <div class="absolute inset-0 sport-pattern z-0 opacity-40"></div>
+
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
+                
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                  <div class="text-4xl sm:text-6xl font-black text-volt font-heading mb-2">
+                    <span class="stat-counter" data-target="50" data-prefix="+" data-suffix=" ألف">+50 ألف</span>
+                  </div>
+                  <p class="text-lg font-bold text-white">رياضي يثق بمنتجاتنا</p>
+                  <p class="text-xs text-gray-400 mt-1">في جميع مدن المملكة والخليج العربي</p>
+                </div>
+
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                  <div class="text-4xl sm:text-6xl font-black text-volt font-heading mb-2">
+                    <span class="stat-counter" data-target="200" data-prefix="+" data-suffix=" منتج">+200 منتج</span>
+                  </div>
+                  <p class="text-lg font-bold text-white">تصميم وتقنية رياضية متطورة</p>
+                  <p class="text-xs text-gray-400 mt-1">مختبرة في أعلى مستويات المنافسة</p>
+                </div>
+
+                <div class="p-6 bg-white/5 rounded-2xl border border-white/10 backdrop-blur-sm">
+                  <div class="text-4xl sm:text-6xl font-black text-volt font-heading mb-2">
+                    <span class="stat-counter" data-target="48" data-suffix=" ساعة">48 ساعة</span>
+                  </div>
+                  <p class="text-lg font-bold text-white">توصيل فائق السرعة</p>
+                  <p class="text-xs text-gray-400 mt-1">مع تتبع لحظي لشحنتك وضمان السلامة</p>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- 5. WIDE BANNER (Text OVER prod-weights Background Image) -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal-on-scroll">
+            <div class="relative rounded-3xl overflow-hidden min-h-[420px] flex items-center p-8 sm:p-14 border border-white/15 shadow-2xl">
+              <!-- Background weights image -->
+              <img src="images/prod-weights.jfif" alt="أوزان رياضية احترافية" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-75 scale-105" />
+              <!-- Gradient overlay for text clarity -->
+              <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/70 to-transparent z-10"></div>
+              <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+              <div class="relative z-20 max-w-xl text-right">
+                <span class="inline-block text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-4 font-heading">
+                  الموسم الجديد 2026
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-heading leading-tight mb-4">
+                  التحدي <span class="text-volt">يبدأ</span> الآن
+                </h2>
+                <p class="text-gray-200 text-sm sm:text-base leading-relaxed mb-8">
+                  لا تنتظر الفرصة المثالية بل اصنعها. احصل على أحدث عتاد التدريب المقاوم للصدمات ومعدات رفع الأثقال الذكية بخصومات استثنائية.
+                </p>
+                <a href="#/equipment" class="inline-flex items-center gap-2 bg-volt text-[#0A0A0A] font-black text-sm px-8 py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading">
+                  <span>اكتشف تجهيزات القوة</span>
+                  <span class="text-lg">←</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. VALUE PROPOSITION STRIP (3 Features with SVG Icons) -->
+          <section class="bg-neutral-950 border-t border-b border-white/10 py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <div class="flex items-center gap-4 text-right">
+                  <div class="w-14 h-14 rounded-2xl bg-volt/10 border border-volt/20 flex items-center justify-center text-volt shrink-0">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-bold text-white font-heading">شحن سريع ومجاني</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">توصيل مجاني للطلبات فوق 200 ر.س خلال 48 ساعة</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4 text-right">
+                  <div class="w-14 h-14 rounded-2xl bg-volt/10 border border-volt/20 flex items-center justify-center text-volt shrink-0">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-bold text-white font-heading">منتجات أصلية 100%</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">مختبرة بأحدث معايير الجودة والأداء الرياضي العالمي</p>
+                  </div>
+                </div>
+
+                <div class="flex items-center gap-4 text-right">
+                  <div class="w-14 h-14 rounded-2xl bg-volt/10 border border-volt/20 flex items-center justify-center text-volt shrink-0">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="text-base font-bold text-white font-heading">استبدال واسترجاع خلال 14 يوماً</h3>
+                    <p class="text-xs text-gray-400 mt-0.5">مرونة وسهولة كاملة في الإرجاع من باب منزلك</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+        </div>
+      `;
+    }
+
+    // -------------------------------------------------------------
+    // PAGE 2: MEN
+    // -------------------------------------------------------------
+    function renderMenPage() {
+      currentFilter = 'all';
+      currentSort = 'none';
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="page-fade">
+          <!-- Top Banner (60vh) - Text INSIDE prod-shoe -->
+          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+            <img src="images/prod-shoe.jfif" alt="ملابس وأحذية رجالية" class="absolute inset-0 w-full h-full object-cover object-center z-0 filter brightness-90" />
+            <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
+              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+                تشكيلة المحترفين
+              </span>
+              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+                ملابس وأحذية <span class="text-volt">رجالية</span>
+              </h1>
+              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+                تصاميم هندسية دقيقة توفر أقصى تهوية ودعم للعضلات أثناء أقسى التمارين وسباقات الماراثون.
+              </p>
+            </div>
+          </section>
+
+          <!-- Filter & Sort Bar -->
+          <div class="bg-neutral-950 border-b border-white/10 sticky top-20 z-30 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+              <!-- Filter tabs -->
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+                <button onclick="setFilter('men', 'all')" data-filter="all" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-volt text-[#0A0A0A] transition">الكل</button>
+                <button onclick="setFilter('men', 'أحذية')" data-filter="أحذية" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">أحذية</button>
+                <button onclick="setFilter('men', 'ملابس تدريب')" data-filter="ملابس تدريب" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">ملابس تدريب</button>
+                <button onclick="setFilter('men', 'إكسسوارات')" data-filter="إكسسوارات" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">إكسسوارات</button>
+              </div>
+
+              <!-- Sort dropdown -->
+              <div class="flex items-center gap-2">
+                <label for="sort-select" class="text-xs text-gray-400">الترتيب:</label>
+                <select id="sort-select" onchange="setSort('men', this.value)" class="bg-[#121212] text-white text-xs border border-white/20 rounded-lg px-3 py-2 focus:ring-1 focus:ring-volt outline-none">
+                  <option value="none">المقترح</option>
+                  <option value="asc">الأقل سعراً</option>
+                  <option value="desc">الأعلى سعراً</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Grid (6 Items with full 3:4 image background) -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div id="category-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- JS rendered -->
+            </div>
+          </section>
+        </div>
+      `;
+      renderProductsGrid('men');
+    }
+
+    // -------------------------------------------------------------
+    // PAGE 3: WOMEN
+    // -------------------------------------------------------------
+    function renderWomenPage() {
+      currentFilter = 'all';
+      currentSort = 'none';
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="page-fade">
+          <!-- Top Banner (60vh) - Text INSIDE prod-earbuds -->
+          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+            <img src="images/prod-earbuds.jfif" alt="رياضة نسائية بلا حدود" class="absolute inset-0 w-full h-full object-cover object-center z-0 filter brightness-90 contrast-110" />
+            <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
+              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+                قوة وتوازن
+              </span>
+              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+                رياضة نسائية <span class="text-volt">بلا حدود</span>
+              </h1>
+              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+                أقمشة حصرية تجمع بين الانسيابية الفائقة والدعم المثالي لليوغا والكروس فت والجري الطويل.
+              </p>
+            </div>
+          </section>
+
+          <!-- Filter & Sort Bar -->
+          <div class="bg-neutral-950 border-b border-white/10 sticky top-20 z-30 py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
+                <button onclick="setFilter('women', 'all')" data-filter="all" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-volt text-[#0A0A0A] transition">الكل</button>
+                <button onclick="setFilter('women', 'يوغا')" data-filter="يوغا" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">يوغا</button>
+                <button onclick="setFilter('women', 'جري')" data-filter="جري" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">جري</button>
+                <button onclick="setFilter('women', 'لياقة')" data-filter="لياقة" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">لياقة</button>
+                <button onclick="setFilter('women', 'إكسسوارات')" data-filter="إكسسوارات" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">إكسسوارات</button>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <label for="sort-select-women" class="text-xs text-gray-400">الترتيب:</label>
+                <select id="sort-select-women" onchange="setSort('women', this.value)" class="bg-[#121212] text-white text-xs border border-white/20 rounded-lg px-3 py-2 focus:ring-1 focus:ring-volt outline-none">
+                  <option value="none">المقترح</option>
+                  <option value="asc">الأقل سعراً</option>
+                  <option value="desc">الأعلى سعراً</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Products Grid -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div id="category-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- JS rendered -->
+            </div>
+          </section>
+        </div>
+      `;
+      renderProductsGrid('women');
+    }
+
+    // -------------------------------------------------------------
+    // PAGE 4: EQUIPMENT
+    // -------------------------------------------------------------
+    function renderEquipmentPage() {
+      currentFilter = 'all';
+      currentSort = 'none';
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="page-fade">
+          <!-- Top Banner (60vh) - Text INSIDE prod-weights -->
+          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+            <img src="images/prod-weights.jfif" alt="تجهيزات رياضية" class="absolute inset-0 w-full h-full object-cover object-center z-0 filter brightness-90" />
+            <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
+              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+                قوة لا تراجع فيها
+              </span>
+              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+                تجهيزات <span class="text-volt">رياضية</span>
+              </h1>
+              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+                معدات رفع أثقال وتدريب وظيفي مصممة لتحمّل أقسى الأحمال وضمان أعلى مستويات الأمان.
+              </p>
+            </div>
+          </section>
+
+          <!-- Special Section: "Build Your Home Gym" (Text INSIDE zoomed prod-weights overlay) -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal-on-scroll">
+            <div class="relative rounded-3xl overflow-hidden min-h-[460px] p-8 sm:p-12 border border-white/10 shadow-2xl flex flex-col justify-center">
+              <img src="images/prod-weights.jfif" alt="جهّز ناديك المنزلي" loading="lazy" class="absolute inset-0 w-full h-full object-cover scale-125 z-0 filter brightness-65" />
+              <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 to-black/50 z-10"></div>
+              <div class="absolute inset-0 sport-pattern z-10 opacity-25"></div>
+
+              <div class="relative z-20 max-w-3xl text-right">
+                <span class="text-volt font-bold text-xs uppercase tracking-widest block mb-2 font-heading">
+                  نادي احترافي بين جدرانك
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white font-heading mb-6">
+                  جهّز ناديك <span class="text-volt">المنزلي</span>
+                </h2>
+
+                <!-- 3 Short Paragraphs -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-sm text-gray-200">
+                  <div class="bg-black/50 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                    <h3 class="font-black text-volt mb-1">استغلال مثالي للمساحة</h3>
+                    <p class="text-xs text-gray-300">أوزان ذكية تعوّض 15 زوج دمبل تقليدي وتوفر 80% من المساحة.</p>
+                  </div>
+                  <div class="bg-black/50 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                    <h3 class="font-black text-volt mb-1">عزل صوتي وحماية</h3>
+                    <p class="text-xs text-gray-300">طلاء مطاطي صامت عالي الكثافة يحمي الأرضيات من الصدمات والخدوش.</p>
+                  </div>
+                  <div class="bg-black/50 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                    <h3 class="font-black text-volt mb-1">تدريب وظيفي متكامل</h3>
+                    <p class="text-xs text-gray-300">باقات تجمع بين المقاومة والتوازن وبناء الكتلة العضلية الصلبة.</p>
+                  </div>
+                </div>
+
+                <!-- 3 Distinct Numbers (Guarantees) -->
+                <div class="flex flex-wrap items-center gap-6 sm:gap-10 border-t border-white/15 pt-6">
+                  <div>
+                    <span class="text-2xl sm:text-3xl font-black text-volt font-heading">سنتين</span>
+                    <span class="block text-xs text-gray-300">ضمان شامل معتمد</span>
+                  </div>
+                  <div class="w-px h-8 bg-white/20"></div>
+                  <div>
+                    <span class="text-2xl sm:text-3xl font-black text-volt font-heading">100%</span>
+                    <span class="block text-xs text-gray-300">فولاذ صناعي معالج</span>
+                  </div>
+                  <div class="w-px h-8 bg-white/20"></div>
+                  <div>
+                    <span class="text-2xl sm:text-3xl font-black text-volt font-heading">0 ر.س</span>
+                    <span class="block text-xs text-gray-300">توصيل وتركيب مجاني</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          <!-- Products Grid -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-right mb-8">
+              <h2 class="text-2xl sm:text-4xl font-black text-white font-heading">
+                أحدث معدات <span class="text-volt">اللياقة والقوة</span>
+              </h2>
+            </div>
+            <div id="category-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              <!-- JS rendered -->
+            </div>
+          </section>
+
+          <!-- "How to Choose Your Equipment" in 3 Steps with Icons -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal-on-scroll">
+            <div class="bg-neutral-950 border border-white/10 rounded-3xl p-8 sm:p-12 text-right">
+              <h2 class="text-2xl sm:text-3xl font-black text-white font-heading mb-10 text-center">
+                كيف تختار <span class="text-volt">تجهيزاتك</span> الرياضية في 3 خطوات
+              </h2>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Step 1 -->
+                <div class="relative bg-white/5 p-6 rounded-2xl border border-white/10">
+                  <span class="absolute -top-3 right-6 bg-volt text-black text-xs font-black px-2.5 py-0.5 rounded font-heading">01</span>
+                  <div class="w-12 h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-white font-heading mb-2">حدد هدفك الأساسي</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">سواء كنت تستهدف بناء القوة العضلية أو التنشيف أو اللياقة القلبية التنفسية.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative bg-white/5 p-6 rounded-2xl border border-white/10">
+                  <span class="absolute -top-3 right-6 bg-volt text-black text-xs font-black px-2.5 py-0.5 rounded font-heading">02</span>
+                  <div class="w-12 h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-white font-heading mb-2">قياس المساحة المتاحة</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">اختر المعدات متعددة الاستخدامات مثل الأوزان القابلة للتعديل إذا كانت المساحة محدودة.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative bg-white/5 p-6 rounded-2xl border border-white/10">
+                  <span class="absolute -top-3 right-6 bg-volt text-black text-xs font-black px-2.5 py-0.5 rounded font-heading">03</span>
+                  <div class="w-12 h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-4">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                  </div>
+                  <h3 class="text-lg font-bold text-white font-heading mb-2">اختر الضمان المعتمد</h3>
+                  <p class="text-xs text-gray-400 leading-relaxed">جميع تجهيزات VoltEdge مشمولة بضمان استبدال مباشر لمدة عامين كاملين.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+      renderProductsGrid('equipment');
+    }
+
+    // -------------------------------------------------------------
+    // PAGE 5: ACTIVE
+    // -------------------------------------------------------------
+    function renderActivePage() {
+      const app = document.getElementById('app');
+      app.innerHTML = `
+        <div class="page-fade">
+          <!-- Top Banner (60vh) - Text INSIDE hero-sports.jfif -->
+          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+            <img src="images/hero-sports.jfif" alt="المجموعة النشطة - إصدار محدود" class="absolute inset-0 w-full h-full object-cover object-top z-0 filter brightness-85" />
+            <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
+            <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+            <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
+              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+                إصدار حصري محدود 2026
+              </span>
+              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+                المجموعة النشطة — <span class="text-volt">إصدار محدود</span>
+              </h1>
+              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+                باقات تم تجميعها بعناية لتمنحك العتاد الأقوى بخصم استثنائي قبل نفاد الكمية المقررة لهذا الشهر.
+              </p>
+            </div>
+          </section>
+
+          <!-- Countdown Banner for Limited Time Offer -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
+            <div class="bg-[#121212] border-2 border-volt/50 rounded-2xl p-6 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+              <div class="text-right">
+                <span class="text-xs font-bold text-volt uppercase">عرض حصري ينتهي قريبًا</span>
+                <h3 class="text-xl sm:text-2xl font-black text-white font-heading">خصم يصل إلى 35% على جميع الباقات</h3>
+              </div>
+              <!-- Timer boxes -->
+              <div class="flex items-center gap-3 font-heading font-black">
+                <div class="bg-black/80 border border-white/10 px-4 py-2.5 rounded-xl text-center min-w-[70px]">
+                  <span id="count-hours" class="text-2xl sm:text-3xl text-volt block">24</span>
+                  <span class="text-[10px] text-gray-400 font-sans">ساعة</span>
+                </div>
+                <span class="text-volt text-2xl">:</span>
+                <div class="bg-black/80 border border-white/10 px-4 py-2.5 rounded-xl text-center min-w-[70px]">
+                  <span id="count-mins" class="text-2xl sm:text-3xl text-volt block">45</span>
+                  <span class="text-[10px] text-gray-400 font-sans">دقيقة</span>
+                </div>
+                <span class="text-volt text-2xl">:</span>
+                <div class="bg-black/80 border border-white/10 px-4 py-2.5 rounded-xl text-center min-w-[70px]">
+                  <span id="count-secs" class="text-2xl sm:text-3xl text-volt block">30</span>
+                  <span class="text-[10px] text-gray-400 font-sans">ثانية</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3 Large Bundle Cards (Text & Price ON TOP of Full Image) -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="text-right mb-10">
+              <span class="text-volt font-bold text-xs uppercase tracking-widest">توفير حقيقي وأداء مضاعف</span>
+              <h2 class="text-3xl sm:text-5xl font-black text-white font-heading mt-2">
+                اختر <span class="text-volt">باقتك</span> الرياضية
+              </h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              ${BUNDLES.map(bundle => `
+                <div class="group relative rounded-3xl overflow-hidden min-h-[500px] flex flex-col justify-end p-8 border border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-volt/50">
+                  <!-- Background Image -->
+                  <img src="${bundle.image}" alt="${bundle.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-108" />
+                  
+                  <!-- Gradient for high contrast -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/20 z-10"></div>
+                  <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+                  <!-- Badge -->
+                  <div class="absolute top-6 right-6 z-20">
+                    <span class="bg-volt text-black text-xs font-black px-3 py-1 rounded-full font-heading">وفر ${bundle.oldPrice - bundle.price} ر.س</span>
+                  </div>
+
+                  <!-- Text Over Image -->
+                  <div class="relative z-20 text-right">
+                    <h3 class="text-2xl sm:text-3xl font-black text-white font-heading mb-2">${bundle.name}</h3>
+                    <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">${bundle.items}</p>
+                    
+                    <div class="flex items-center gap-3 mb-6">
+                      <span class="text-3xl font-black text-volt font-heading">${bundle.price} <span class="text-xs font-normal text-white">ر.س</span></span>
+                      <span class="text-sm text-gray-400 line-through">${bundle.oldPrice} ر.س</span>
+                    </div>
+
+                    <button onclick="addToCart(${bundle.id})" class="w-full bg-volt text-[#0A0A0A] font-black text-sm py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading flex items-center justify-center gap-2">
+                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                      <span>احصل على الباقة الآن</span>
+                    </button>
+                  </div>
+                </div>
+              `).join('')}
+            </div>
+          </section>
+
+          <!-- Newsletter Subscription in a Section with Background Image -->
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 reveal-on-scroll">
+            <div class="relative rounded-3xl overflow-hidden min-h-[340px] flex items-center justify-center p-8 sm:p-14 border border-white/10 shadow-2xl text-center">
+              <img src="images/prod-protein.jfif" alt="اشترك في نشرة العروض" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-40" />
+              <div class="absolute inset-0 bg-black/70 z-10"></div>
+              <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+              <div class="relative z-20 max-w-xl mx-auto">
+                <span class="text-xs font-bold text-volt uppercase tracking-wider block mb-2 font-heading">كن أول من يعلم</span>
+                <h3 class="text-3xl sm:text-4xl font-black text-white font-heading mb-4">
+                  اشترك في نادي <span class="text-volt">VoltEdge</span>
+                </h3>
+                <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                  احصل على كود خصم 15% على طلبك القادم ودعوات حصرية لإصدارات التشكيلات الجديدة قبل الجميع.
+                </p>
+
+                <form onsubmit="event.preventDefault(); showToast('تم اشتراكك بنجاح! شكرًا لك'); this.reset();" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                  <input type="email" required placeholder="أدخل بريدك الإلكتروني" class="flex-1 bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-volt" />
+                  <button type="submit" class="bg-volt text-[#0A0A0A] font-black px-6 py-3 rounded-xl hover:bg-volt-hover transition font-heading">
+                    انضم الآن
+                  </button>
+                </form>
+              </div>
+            </div>
+          </section>
+        </div>
+      `;
+      startCountdown();
+    }
+
+    // -------------------------------------------------------------
+    // PAGE 6: CART & CHECKOUT
+    // -------------------------------------------------------------
+    function renderCartPage() {
+      const app = document.getElementById('app');
+      
+      if (cart.length === 0) {
+        // Empty State: prod-shoe background with message
+        app.innerHTML = `
+          <div class="page-fade max-w-4xl mx-auto px-4 py-20 text-center">
+            <div class="relative rounded-3xl overflow-hidden min-h-[460px] flex items-center justify-center p-8 border border-white/10 shadow-2xl">
+              <img src="images/prod-shoe.jfif" alt="سلتك فارغة" class="absolute inset-0 w-full h-full object-cover filter brightness-35 z-0" />
+              <div class="absolute inset-0 bg-black/70 z-10"></div>
+              <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
+
+              <div class="relative z-20 max-w-md">
+                <div class="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6 text-volt">
+                  <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
+                  </svg>
+                </div>
+                <h2 class="text-3xl font-black text-white font-heading mb-2">سلتك <span class="text-volt">فارغة</span> حالياً</h2>
+                <p class="text-gray-300 text-sm mb-8 leading-relaxed">
+                  لم تقم بإضافة أي عتاد رياضي بعد. استكشف تشكيلاتنا الاستثنائية وجهّز نفسك للتمرين القادم!
+                </p>
+                <a href="#/home" class="inline-flex items-center gap-2 bg-volt text-[#0A0A0A] font-black text-base px-8 py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading">
+                  <span>العودة للتسوق</span>
+                  <span class="text-lg">←</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+      const shipping = 0; // Free shipping
+      const total = subtotal + shipping;
+
+      app.innerHTML = `
+        <div class="page-fade max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          
+          <div class="text-right mb-8">
+            <h1 class="text-3xl sm:text-5xl font-black text-white font-heading">
+              سلة التسوق <span class="text-volt">وإتمام الشراء</span>
+            </h1>
+            <p class="text-sm text-gray-400 mt-1">لديك ${cart.length} منتجات في السلة</p>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <!-- Left Column: Cart Items List -->
+            <div class="lg:col-span-7 space-y-4">
+              <div class="bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-xl space-y-4">
+                ${cart.map(item => `
+                  <div class="flex items-center justify-between gap-4 py-4 border-b border-white/10 last:border-0">
+                    
+                    <!-- Item image and details -->
+                    <div class="flex items-center gap-4 text-right flex-1">
+                      <div class="w-20 h-20 rounded-xl overflow-hidden bg-neutral-900 border border-white/10 shrink-0">
+                        <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" />
+                      </div>
+                      <div>
+                        <h3 class="text-base font-black text-white font-heading mb-1 line-clamp-1">${item.name}</h3>
+                        <p class="text-xs text-gray-400 mb-1">التقييم: <span class="text-volt">★ ${item.rating}</span></p>
+                        <span class="text-sm font-black text-volt font-heading">${item.price} <span class="text-xs font-normal text-gray-300">ر.س</span></span>
+                      </div>
+                    </div>
+
+                    <!-- Quantity controls and Delete -->
+                    <div class="flex items-center gap-3">
+                      <div class="flex items-center bg-black/60 border border-white/10 rounded-lg overflow-hidden">
+                        <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 flex items-center justify-center text-white hover:text-volt hover:bg-white/5 transition" aria-label="تقليل الكمية">-</button>
+                        <span class="w-8 text-center text-xs font-bold text-white">${item.quantity}</span>
+                        <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 flex items-center justify-center text-white hover:text-volt hover:bg-white/5 transition" aria-label="زيادة الكمية">+</button>
+                      </div>
+
+                      <button onclick="removeFromCart(${item.id})" class="p-2 text-gray-400 hover:text-red-400 transition" aria-label="حذف المنتج">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                      </button>
+                    </div>
+
+                  </div>
+                `).join('')}
+              </div>
+
+              <!-- Extra Trust notice -->
+              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3 text-right">
+                <span class="text-volt text-xl">🛡️</span>
+                <p class="text-xs text-gray-300">
+                  جميع الشحنات مؤمّنة بالكامل وضمان استرجاع بدون أي تعقيدات خلال 14 يوماً من الاستلام.
+                </p>
+              </div>
+            </div>
+
+            <!-- Right Column: Shipping Form & Order Summary -->
+            <div class="lg:col-span-5 space-y-6">
+              
+              <!-- Order Summary -->
+              <div class="bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-xl text-right">
+                <h3 class="text-lg font-black text-white font-heading mb-4 border-b border-white/10 pb-3">ملخص الطلب</h3>
+                
+                <div class="space-y-3 text-sm text-gray-300 mb-6">
+                  <div class="flex justify-between">
+                    <span>مجموع المنتجات:</span>
+                    <span class="font-bold text-white font-heading">${subtotal} ر.س</span>
+                  </div>
+                  <div class="flex justify-between">
+                    <span>تكلفة الشحن السريع:</span>
+                    <span class="text-volt font-bold">مجاني</span>
+                  </div>
+                  <div class="border-t border-white/10 pt-3 flex justify-between items-center">
+                    <span class="text-base font-black text-white font-heading">الإجمالي النهائي:</span>
+                    <span class="text-2xl font-black text-volt font-heading">${total} <span class="text-xs font-normal text-white">ر.س</span></span>
+                  </div>
+                </div>
+
+                <!-- Shipping Form with Arabic Validation -->
+                <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-4">
+                  <h4 class="text-sm font-bold text-gray-200 border-r-2 border-volt pr-2">بيانات الشحن والتوصيل</h4>
+                  
+                  <div>
+                    <label for="cust-name" class="block text-xs text-gray-400 mb-1">الاسم الكامل *</label>
+                    <input id="cust-name" type="text" required placeholder="محمد عبد الله" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                  </div>
+
+                  <div>
+                    <label for="cust-phone" class="block text-xs text-gray-400 mb-1">رقم الجوال *</label>
+                    <input id="cust-phone" type="tel" required pattern="^05[0-9]{8}$" placeholder="05XXXXXXXX" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                    <span class="text-[10px] text-gray-400">مثال: 0512345678</span>
+                  </div>
+
+                  <div class="grid grid-cols-2 gap-3">
+                    <div>
+                      <label for="cust-city" class="block text-xs text-gray-400 mb-1">المدينة *</label>
+                      <select id="cust-city" required class="w-full bg-black/60 border border-white/15 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-volt">
+                        <option value="">اختر المدينة</option>
+                        <option value="الرياض">الرياض</option>
+                        <option value="جدة">جدة</option>
+                        <option value="الدمام">الدمام</option>
+                        <option value="مكة المكرمة">مكة المكرمة</option>
+                        <option value="المدينة المنورة">المدينة المنورة</option>
+                        <option value="الخبر">الخبر</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label for="cust-district" class="block text-xs text-gray-400 mb-1">الحي *</label>
+                      <input id="cust-district" type="text" required placeholder="مثال: النرجس" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label for="cust-address" class="block text-xs text-gray-400 mb-1">العنوان بالتفصيل *</label>
+                    <input id="cust-address" type="text" required placeholder="اسم الشارع ورقم المبنى" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                  </div>
+
+                  <button type="submit" class="w-full mt-4 bg-volt text-[#0A0A0A] font-black text-base py-4 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-2xl font-heading flex items-center justify-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
+                    <span>إتمام الطلب الآن (الدفع عند الاستلام)</span>
+                  </button>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      `;
+    }
+
+    function handleCheckout(event) {
+      event.preventDefault();
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      if (!name || !phone) {
+        showToast('يرجى ملء جميع الحقول المطلوبة بشكل صحيح');
+        return;
+      }
+      openCheckoutModal();
+    }
+
+    // -------------------------------------------------------------
+    // 8. EVENT LISTENERS AND INITIALIZATION
+    // -------------------------------------------------------------
+    window.addEventListener('hashchange', navigate);
+    window.addEventListener('DOMContentLoaded', () => {
+      // Toggle Mobile Menu
+      const menuBtn = document.getElementById('mobile-menu-btn');
+      const drawer = document.getElementById('mobile-drawer');
+      const openIcon = document.getElementById('menu-icon-open');
+      const closeIcon = document.getElementById('menu-icon-close');
+
+      if (menuBtn && drawer) {
+        menuBtn.addEventListener('click', () => {
+          const isHidden = drawer.classList.contains('hidden');
+          if (isHidden) {
+            drawer.classList.remove('hidden');
+            if (openIcon) openIcon.classList.add('hidden');
+            if (closeIcon) closeIcon.classList.remove('hidden');
+          } else {
+            drawer.classList.add('hidden');
+            if (openIcon) openIcon.classList.remove('hidden');
+            if (closeIcon) closeIcon.classList.add('hidden');
+          }
+        });
+      }
+
+      // Initial route
+      navigate();
+    });
+  </script>
+</body>
+</html>

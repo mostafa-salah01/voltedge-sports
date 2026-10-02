@@ -1,0 +1,6 @@
+{
+  "name": "VoltEdge Sports",
+  "description": "متجر رياضي عالمي للأداء العالي وتجهيزات التدريب واللياقة البدنية - أداء بلا حدود",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
