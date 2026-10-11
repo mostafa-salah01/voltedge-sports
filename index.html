@@ -654,10 +654,12 @@
       const app = document.getElementById('app');
       app.innerHTML = `
         <div class="page-fade">
-          <!-- 1. FULLSCREEN HERO SECTION (Text ON TOP of Image) -->
+          <!-- 1. FULLSCREEN HERO SECTION (Video ON TOP of Hero Section) -->
           <section class="w-full min-h-[85vh] relative overflow-hidden flex items-center">
-            <!-- Full Background Image -->
-            <img src="images/hero-sports.jfif" alt="رياضيون محترفون يتمرنون بأقصى أداء" class="absolute inset-0 w-full h-full object-cover z-0 brightness-95" />
+            <!-- Full Background Video -->
+            <video autoplay loop muted playsinline poster="images/hero-sports.jfif" class="absolute inset-0 w-full h-full object-cover z-0 brightness-95">
+              <source src="images/voltedge-sports-gear-showcase.mp4" type="video/mp4">
+            </video>
             
             <!-- Dark directional gradient + Sporty pattern -->
             <div class="absolute inset-0 bg-gradient-to-l from-black/90 via-black/60 to-transparent z-0"></div>
