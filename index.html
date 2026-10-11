@@ -38,11 +38,24 @@
   </script>
 
   <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html {
+      overflow-x: hidden;
+      max-width: 100%;
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Tajawal', sans-serif;
       background-color: #0A0A0A;
       color: #FFFFFF;
       overflow-x: hidden;
+      max-width: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      -webkit-text-size-adjust: 100%;
     }
     h1, h2, h3, h4, h5, h6, .font-heading {
       font-family: 'Cairo', sans-serif;
@@ -81,6 +94,14 @@
       from { opacity: 0; transform: translateY(24px); }
       to { opacity: 1; transform: translateY(0); }
     }
+    /* Hide scrollbars on horizontal lists */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
     @media (prefers-reduced-motion: reduce) {
       .page-fade, .hero-text-anim, .pulse-badge {
         animation: none !important;
@@ -92,8 +113,8 @@
 <body class="min-h-screen flex flex-col antialiased selection:bg-volt selection:text-black">
 
   <!-- NAVBAR -->
-  <header class="sticky top-0 z-50 bg-[#0A0A0A]/90 backdrop-blur-md border-b border-white/10 transition-colors">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+  <header class="sticky top-0 z-50 bg-[#0A0A0A]/95 backdrop-blur-md border-b border-white/10 transition-colors">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between">
       
       <!-- Right: Navigation Links (Desktop) -->
       <nav class="hidden md:flex items-center gap-7 text-sm font-semibold tracking-wide">
@@ -105,20 +126,20 @@
       </nav>
 
       <!-- Center / Left: Brand Logo -->
-      <a href="#/home" class="flex items-center gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt rounded p-1">
-        <span class="text-2xl sm:text-3xl font-black italic tracking-tighter text-white group-hover:text-volt transition-colors font-heading">
+      <a href="#/home" class="flex items-center gap-1.5 sm:gap-2 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-volt rounded p-1">
+        <span class="text-xl sm:text-3xl font-black italic tracking-tighter text-white group-hover:text-volt transition-colors font-heading">
           VoltEdge
         </span>
-        <span class="text-xs font-black tracking-widest text-[#0A0A0A] bg-volt px-1.5 py-0.5 rounded uppercase font-heading">
+        <span class="text-[10px] sm:text-xs font-black tracking-widest text-[#0A0A0A] bg-volt px-1.5 py-0.5 rounded uppercase font-heading">
           SPORTS
         </span>
       </a>
 
       <!-- Left: Actions (Cart & Mobile Toggle) -->
-      <div class="flex items-center gap-4">
+      <div class="flex items-center gap-3 sm:gap-4">
         <!-- Cart Button -->
-        <a href="#/cart" id="nav-cart-btn" class="relative p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center justify-center focus-visible:ring-2 focus-visible:ring-volt" aria-label="سلة التسوق">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <a href="#/cart" id="nav-cart-btn" class="relative p-2 sm:p-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition flex items-center justify-center focus-visible:ring-2 focus-visible:ring-volt" aria-label="سلة التسوق">
+          <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
           </svg>
           <span id="cart-counter" class="absolute -top-1.5 -left-1.5 bg-volt text-[#0A0A0A] font-black text-xs w-5 h-5 rounded-full flex items-center justify-center shadow-lg font-heading">
@@ -161,14 +182,14 @@
   </main>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 transform translate-y-24 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 bg-[#0A0A0A] border-2 border-volt text-white px-6 py-3.5 rounded-xl shadow-2xl">
-    <span class="w-3 h-3 rounded-full bg-volt animate-ping"></span>
-    <span id="toast-message" class="font-bold text-sm">تمت الإضافة إلى السلة بنجاح</span>
+  <div id="toast" class="fixed bottom-6 inset-x-4 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2 z-50 transform translate-y-28 opacity-0 pointer-events-none transition-all duration-300 flex items-center justify-center gap-3 bg-[#0A0A0A] border-2 border-volt text-white px-5 sm:px-6 py-3 sm:py-3.5 rounded-xl shadow-2xl max-w-sm mx-auto">
+    <span class="w-2.5 h-2.5 rounded-full bg-volt animate-ping shrink-0"></span>
+    <span id="toast-message" class="font-bold text-xs sm:text-sm text-center">تمت الإضافة إلى السلة بنجاح</span>
   </div>
 
   <!-- ORDER SUCCESS MODAL -->
-  <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 backdrop-blur-sm p-4">
-    <div class="bg-[#121212] border border-volt/40 rounded-2xl max-w-md w-full p-8 text-center shadow-2xl relative">
+  <div id="checkout-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/85 backdrop-blur-sm p-4 overflow-y-auto">
+    <div class="bg-[#121212] border border-volt/40 rounded-2xl max-w-md w-full p-5 sm:p-8 text-center shadow-2xl relative my-auto">
       <div class="w-16 h-16 bg-volt/20 text-volt rounded-full flex items-center justify-center mx-auto mb-5">
         <svg class="w-9 h-9" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/>
@@ -410,12 +431,12 @@
       const toastMsg = document.getElementById('toast-message');
       if (!toast || !toastMsg) return;
       toastMsg.textContent = message;
-      toast.classList.remove('translate-y-24', 'opacity-0', 'pointer-events-none');
+      toast.classList.remove('translate-y-28', 'opacity-0', 'pointer-events-none');
       toast.classList.add('translate-y-0', 'opacity-100');
       clearTimeout(toastTimeout);
       toastTimeout = setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
-        toast.classList.add('translate-y-24', 'opacity-0', 'pointer-events-none');
+        toast.classList.add('translate-y-28', 'opacity-0', 'pointer-events-none');
       }, 2500);
     }
 
@@ -548,7 +569,7 @@
       if (list.length === 0) {
         container.innerHTML = `
           <div class="col-span-full py-16 text-center text-gray-400">
-            <p class="text-lg">لا توجد منتجات تطابق الفلتر المختار.</p>
+            <p class="text-base sm:text-lg">لا توجد منتجات تطابق الفلتر المختار.</p>
           </div>
         `;
         return;
@@ -564,24 +585,24 @@
           <div class="absolute inset-0 sport-pattern z-10 pointer-events-none"></div>
 
           <!-- Tag badge top right -->
-          <div class="absolute top-4 right-4 z-20">
-            <span class="text-xs font-bold bg-black/60 backdrop-blur-md border border-white/15 text-gray-200 px-3 py-1 rounded-full">
+          <div class="absolute top-3 sm:top-4 right-3 sm:right-4 z-20">
+            <span class="text-[11px] sm:text-xs font-bold bg-black/60 backdrop-blur-md border border-white/15 text-gray-200 px-2.5 sm:px-3 py-1 rounded-full">
               ${item.tag}
             </span>
           </div>
 
           <!-- Rating top left -->
-          <div class="absolute top-4 left-4 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-xs text-volt font-bold">
+          <div class="absolute top-3 sm:top-4 left-3 sm:left-4 z-20 flex items-center gap-1 bg-black/60 backdrop-blur-md border border-white/15 px-2 sm:px-2.5 py-1 rounded-full text-xs text-volt font-bold">
             <span>★</span>
             <span class="text-white">${item.rating}</span>
           </div>
 
           <!-- Content at bottom inside image -->
-          <div class="absolute bottom-0 inset-x-0 p-5 z-20 flex flex-col justify-end text-right">
-            <h3 class="text-lg font-black text-white font-heading mb-1 line-clamp-1">${item.name}</h3>
+          <div class="absolute bottom-0 inset-x-0 p-4 sm:p-5 z-20 flex flex-col justify-end text-right">
+            <h3 class="text-base sm:text-lg font-black text-white font-heading mb-1 line-clamp-1">${item.name}</h3>
             <div class="flex items-center justify-between mt-2">
-              <span class="text-xl font-black text-volt font-heading">${item.price} <span class="text-xs font-normal text-gray-300">ر.س</span></span>
-              <button onclick="addToCart(${item.id})" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2.5 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow-lg flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-white">
+              <span class="text-lg sm:text-xl font-black text-volt font-heading">${item.price} <span class="text-xs font-normal text-gray-300">ر.س</span></span>
+              <button onclick="addToCart(${item.id})" class="bg-volt text-[#0A0A0A] font-black text-xs px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow-lg flex items-center gap-1.5 focus-visible:ring-2 focus-visible:ring-white">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 4v16m8-8H4"/></svg>
                 <span>أضف للسلة</span>
               </button>
@@ -655,43 +676,43 @@
       app.innerHTML = `
         <div class="page-fade">
           <!-- 1. FULLSCREEN HERO SECTION (Video ON TOP of Hero Section) -->
-          <section class="w-full min-h-[85vh] relative overflow-hidden flex items-center">
+          <section class="w-full min-h-[80vh] sm:min-h-[85vh] relative overflow-hidden flex items-center">
             <!-- Full Background Video -->
-            <video autoplay loop muted playsinline poster="images/hero-sports.jfif" class="absolute inset-0 w-full h-full object-cover z-0 brightness-95">
+            <video autoplay loop muted playsinline preload="metadata" poster="images/hero-sports.jfif" class="absolute inset-0 w-full h-full object-cover z-0 brightness-95">
               <source src="images/voltedge-sports-gear-showcase.mp4" type="video/mp4">
             </video>
             
             <!-- Dark directional gradient + Sporty pattern -->
-            <div class="absolute inset-0 bg-gradient-to-l from-black/90 via-black/60 to-transparent z-0"></div>
+            <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/70 sm:via-black/60 to-black/30 sm:to-transparent z-0"></div>
             <div class="absolute inset-0 sport-pattern z-0 opacity-40"></div>
 
             <!-- Content Container -->
-            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+            <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 pb-20 sm:pb-28 w-full">
               <div class="max-w-2xl text-right hero-text-anim">
                 
                 <!-- Kicker / Badge -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-black/60 border border-volt/30 backdrop-blur-md mb-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/60 border border-volt/30 backdrop-blur-md mb-4 sm:mb-6">
                   <span class="w-2 h-2 rounded-full bg-volt animate-ping"></span>
                   <span class="text-xs font-bold text-gray-200">VoltEdge Sports · أداء بلا حدود</span>
                 </div>
 
                 <!-- Main Giant Heading with Lime Keyword -->
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black text-white font-heading leading-tight tracking-tight mb-6">
+                <h1 class="text-3xl sm:text-6xl lg:text-7xl font-black text-white font-heading leading-tight tracking-tight mb-4 sm:mb-6">
                   أطلق العنان <span class="text-volt">لقوتك:</span> اكتشف الأداء الحقيقي
                 </h1>
 
                 <!-- Subtitle -->
-                <p class="text-lg sm:text-xl text-gray-300 mb-8 font-medium leading-relaxed max-w-xl">
+                <p class="text-sm sm:text-xl text-gray-300 mb-6 sm:mb-8 font-medium leading-relaxed max-w-xl">
                   تجهّز بأحدث الابتكارات من VoltEdge. صُممت منتجاتنا للرياضيين الذين يرفضون الاستسلام ويبحثون عن الانتصار في كل جولة.
                 </p>
 
                 <!-- Action CTA Buttons -->
-                <div class="flex flex-wrap items-center gap-4">
-                  <a href="#/men" class="bg-volt text-[#0A0A0A] font-black text-base px-8 py-4 rounded-xl shadow-lg hover:bg-volt-hover active:scale-95 transition font-heading flex items-center gap-2">
+                <div class="flex flex-wrap items-center gap-3 sm:gap-4">
+                  <a href="#/men" class="bg-volt text-[#0A0A0A] font-black text-sm sm:text-base px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl shadow-lg hover:bg-volt-hover active:scale-95 transition font-heading flex items-center gap-2">
                     <span>تسوق الآن</span>
-                    <svg class="w-5 h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 rtl:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
                   </a>
-                  <a href="#/active" class="border-2 border-white/60 hover:border-volt text-white hover:text-volt font-bold text-base px-7 py-3.5 rounded-xl backdrop-blur-sm transition font-heading">
+                  <a href="#/active" class="border-2 border-white/60 hover:border-volt text-white hover:text-volt font-bold text-sm sm:text-base px-5 sm:px-7 py-3 sm:py-3.5 rounded-xl backdrop-blur-sm transition font-heading">
                     اكتشف المجموعات
                   </a>
                 </div>
@@ -700,85 +721,85 @@
             </div>
           </section>
 
-          <!-- 2. OVERLAPPING FEATURED PRODUCTS CARDS (-mt-16 over hero) -->
-          <section class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-16 mb-20">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <!-- 2. OVERLAPPING FEATURED PRODUCTS CARDS (-mt-8 on mobile, -mt-16 on desktop) -->
+          <section class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 sm:-mt-16 mb-12 sm:mb-20">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
               
               <!-- Card 1 -->
-              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+              <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-volt/10 border border-gray-100">
                 <div>
-                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-3 sm:mb-4 relative">
                     <img src="images/prod-shoe.jfif" alt="حذاء جري ديناميكي" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
                     <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
                       ★ 5.0
                     </span>
                   </div>
-                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">حذاء جري ديناميكي</h3>
+                  <h3 class="font-black text-base sm:text-lg text-neutral-900 font-heading mb-1">حذاء جري ديناميكي</h3>
                   <p class="text-xs text-neutral-500 mb-3">ألياف كربونية واستجابة ارتدادية فائقة</p>
                 </div>
                 <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                  <span class="font-black text-xl text-neutral-950 font-heading">649 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
-                  <button onclick="addToCart(1)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                  <span class="font-black text-lg sm:text-xl text-neutral-950 font-heading">649 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(1)" class="bg-volt text-[#0A0A0A] font-black text-xs px-3 sm:px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
                     <span>إضافة للسلة</span>
                   </button>
                 </div>
               </div>
 
               <!-- Card 2 -->
-              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+              <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-volt/10 border border-gray-100">
                 <div>
-                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-3 sm:mb-4 relative">
                     <img src="images/prod-weights.jfif" alt="مجموعة أوزان ذكية" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
                     <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
                       ★ 4.9
                     </span>
                   </div>
-                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">مجموعة أوزان ذكية</h3>
+                  <h3 class="font-black text-base sm:text-lg text-neutral-900 font-heading mb-1">مجموعة أوزان ذكية</h3>
                   <p class="text-xs text-neutral-500 mb-3">تعديل وزن فوري بمقبض أمان دوّار</p>
                 </div>
                 <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                  <span class="font-black text-xl text-neutral-950 font-heading">1299 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
-                  <button onclick="addToCart(2)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                  <span class="font-black text-lg sm:text-xl text-neutral-950 font-heading">1299 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(2)" class="bg-volt text-[#0A0A0A] font-black text-xs px-3 sm:px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
                     <span>إضافة للسلة</span>
                   </button>
                 </div>
               </div>
 
               <!-- Card 3 -->
-              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+              <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-volt/10 border border-gray-100">
                 <div>
-                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-3 sm:mb-4 relative">
                     <img src="images/prod-earbuds.jfif" alt="سماعات رياضية لاسلكية" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
                     <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
                       ★ 5.0
                     </span>
                   </div>
-                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">سماعات رياضية لاسلكية</h3>
+                  <h3 class="font-black text-base sm:text-lg text-neutral-900 font-heading mb-1">سماعات رياضية لاسلكية</h3>
                   <p class="text-xs text-neutral-500 mb-3">ثبات تام ومقاومة كاملة للتعرق والماء</p>
                 </div>
                 <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                  <span class="font-black text-xl text-neutral-950 font-heading">299 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
-                  <button onclick="addToCart(3)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                  <span class="font-black text-lg sm:text-xl text-neutral-950 font-heading">299 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(3)" class="bg-volt text-[#0A0A0A] font-black text-xs px-3 sm:px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
                     <span>إضافة للسلة</span>
                   </button>
                 </div>
               </div>
 
               <!-- Card 4 -->
-              <div class="bg-white rounded-2xl p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-2 hover:shadow-volt/10 border border-gray-100">
+              <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-2xl text-right text-black flex flex-col justify-between group transition-all duration-300 hover:-translate-y-1.5 hover:shadow-volt/10 border border-gray-100">
                 <div>
-                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-4 relative">
+                  <div class="aspect-square rounded-xl overflow-hidden bg-neutral-100 mb-3 sm:mb-4 relative">
                     <img src="images/prod-protein.jfif" alt="مشروب بروتين عضوي" loading="lazy" class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-500" />
                     <span class="absolute top-2 left-2 bg-[#0A0A0A]/85 text-volt text-xs font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
                       ★ 4.8
                     </span>
                   </div>
-                  <h3 class="font-black text-lg text-neutral-900 font-heading mb-1">مشروب بروتين عضوي</h3>
+                  <h3 class="font-black text-base sm:text-lg text-neutral-900 font-heading mb-1">مشروب بروتين عضوي</h3>
                   <p class="text-xs text-neutral-500 mb-3">28 جم بروتين نقي سريع الامتصاص</p>
                 </div>
                 <div class="flex items-center justify-between pt-2 border-t border-gray-100">
-                  <span class="font-black text-xl text-neutral-950 font-heading">149 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
-                  <button onclick="addToCart(4)" class="bg-volt text-[#0A0A0A] font-black text-xs px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
+                  <span class="font-black text-lg sm:text-xl text-neutral-950 font-heading">149 <span class="text-xs font-normal text-neutral-500">ر.س</span></span>
+                  <button onclick="addToCart(4)" class="bg-volt text-[#0A0A0A] font-black text-xs px-3 sm:px-4 py-2 rounded-lg hover:bg-volt-hover active:scale-95 transition shadow font-heading flex items-center gap-1">
                     <span>إضافة للسلة</span>
                   </button>
                 </div>
@@ -983,40 +1004,40 @@
       const app = document.getElementById('app');
       app.innerHTML = `
         <div class="page-fade">
-          <!-- Top Banner (60vh) - Text INSIDE prod-shoe -->
-          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+          <!-- Top Banner (45vh on mobile, 60vh on desktop) -->
+          <section class="relative w-full h-[45vh] sm:h-[60vh] flex items-center overflow-hidden">
             <img src="images/prod-shoe.jfif" alt="ملابس وأحذية رجالية" class="absolute inset-0 w-full h-full object-cover object-center z-0 filter brightness-90" />
             <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
             <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
             <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
-              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+              <span class="text-xs font-black uppercase text-black bg-volt px-2.5 sm:px-3 py-1 rounded-md mb-2 sm:mb-3 inline-block font-heading">
                 تشكيلة المحترفين
               </span>
-              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+              <h1 class="text-3xl sm:text-6xl font-black text-white font-heading mb-2 sm:mb-3">
                 ملابس وأحذية <span class="text-volt">رجالية</span>
               </h1>
-              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              <p class="text-gray-300 text-xs sm:text-base max-w-xl leading-relaxed">
                 تصاميم هندسية دقيقة توفر أقصى تهوية ودعم للعضلات أثناء أقسى التمارين وسباقات الماراثون.
               </p>
             </div>
           </section>
 
           <!-- Filter & Sort Bar -->
-          <div class="bg-neutral-950 border-b border-white/10 sticky top-20 z-30 py-4">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
+          <div class="bg-neutral-950 border-b border-white/10 sticky top-16 sm:top-20 z-30 py-3 sm:py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
               <!-- Filter tabs -->
-              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-                <button onclick="setFilter('men', 'all')" data-filter="all" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-volt text-[#0A0A0A] transition">الكل</button>
-                <button onclick="setFilter('men', 'أحذية')" data-filter="أحذية" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">أحذية</button>
-                <button onclick="setFilter('men', 'ملابس تدريب')" data-filter="ملابس تدريب" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">ملابس تدريب</button>
-                <button onclick="setFilter('men', 'إكسسوارات')" data-filter="إكسسوارات" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">إكسسوارات</button>
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar whitespace-nowrap">
+                <button onclick="setFilter('men', 'all')" data-filter="all" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold bg-volt text-[#0A0A0A] transition">الكل</button>
+                <button onclick="setFilter('men', 'أحذية')" data-filter="أحذية" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">أحذية</button>
+                <button onclick="setFilter('men', 'ملابس تدريب')" data-filter="ملابس تدريب" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">ملابس تدريب</button>
+                <button onclick="setFilter('men', 'إكسسوارات')" data-filter="إكسسوارات" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">إكسسوارات</button>
               </div>
 
               <!-- Sort dropdown -->
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 self-end sm:self-auto">
                 <label for="sort-select" class="text-xs text-gray-400">الترتيب:</label>
-                <select id="sort-select" onchange="setSort('men', this.value)" class="bg-[#121212] text-white text-xs border border-white/20 rounded-lg px-3 py-2 focus:ring-1 focus:ring-volt outline-none">
+                <select id="sort-select" onchange="setSort('men', this.value)" class="bg-[#121212] text-white text-xs border border-white/20 rounded-lg px-3 py-1.5 sm:py-2 focus:ring-1 focus:ring-volt outline-none">
                   <option value="none">المقترح</option>
                   <option value="asc">الأقل سعراً</option>
                   <option value="desc">الأعلى سعراً</option>
@@ -1045,39 +1066,39 @@
       const app = document.getElementById('app');
       app.innerHTML = `
         <div class="page-fade">
-          <!-- Top Banner (60vh) - Text INSIDE prod-earbuds -->
-          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+          <!-- Top Banner (45vh on mobile, 60vh on desktop) -->
+          <section class="relative w-full h-[45vh] sm:h-[60vh] flex items-center overflow-hidden">
             <img src="images/prod-earbuds.jfif" alt="رياضة نسائية بلا حدود" class="absolute inset-0 w-full h-full object-cover object-center z-0 filter brightness-90 contrast-110" />
             <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
             <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
             <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
-              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+              <span class="text-xs font-black uppercase text-black bg-volt px-2.5 sm:px-3 py-1 rounded-md mb-2 sm:mb-3 inline-block font-heading">
                 قوة وتوازن
               </span>
-              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+              <h1 class="text-3xl sm:text-6xl font-black text-white font-heading mb-2 sm:mb-3">
                 رياضة نسائية <span class="text-volt">بلا حدود</span>
               </h1>
-              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              <p class="text-gray-300 text-xs sm:text-base max-w-xl leading-relaxed">
                 أقمشة حصرية تجمع بين الانسيابية الفائقة والدعم المثالي لليوغا والكروس فت والجري الطويل.
               </p>
             </div>
           </section>
 
           <!-- Filter & Sort Bar -->
-          <div class="bg-neutral-950 border-b border-white/10 sticky top-20 z-30 py-4">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-wrap items-center justify-between gap-4">
-              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0">
-                <button onclick="setFilter('women', 'all')" data-filter="all" class="filter-btn px-4 py-2 rounded-lg text-sm font-bold bg-volt text-[#0A0A0A] transition">الكل</button>
-                <button onclick="setFilter('women', 'يوغا')" data-filter="يوغا" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">يوغا</button>
-                <button onclick="setFilter('women', 'جري')" data-filter="جري" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">جري</button>
-                <button onclick="setFilter('women', 'لياقة')" data-filter="لياقة" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">لياقة</button>
-                <button onclick="setFilter('women', 'إكسسوارات')" data-filter="إكسسوارات" class="filter-btn px-4 py-2 rounded-lg text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">إكسسوارات</button>
+          <div class="bg-neutral-950 border-b border-white/10 sticky top-16 sm:top-20 z-30 py-3 sm:py-4">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+              <div class="flex items-center gap-2 overflow-x-auto pb-1 sm:pb-0 no-scrollbar whitespace-nowrap">
+                <button onclick="setFilter('women', 'all')" data-filter="all" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-bold bg-volt text-[#0A0A0A] transition">الكل</button>
+                <button onclick="setFilter('women', 'يوغا')" data-filter="يوغا" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">يوغا</button>
+                <button onclick="setFilter('women', 'جري')" data-filter="جري" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">جري</button>
+                <button onclick="setFilter('women', 'لياقة')" data-filter="لياقة" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">لياقة</button>
+                <button onclick="setFilter('women', 'إكسسوارات')" data-filter="إكسسوارات" class="filter-btn px-3 sm:px-4 py-1.5 sm:py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white/5 hover:bg-white/10 text-white transition">إكسسوارات</button>
               </div>
 
-              <div class="flex items-center gap-2">
+              <div class="flex items-center gap-2 self-end sm:self-auto">
                 <label for="sort-select-women" class="text-xs text-gray-400">الترتيب:</label>
-                <select id="sort-select-women" onchange="setSort('women', this.value)" class="bg-[#121212] text-white text-xs border border-white/20 rounded-lg px-3 py-2 focus:ring-1 focus:ring-volt outline-none">
+                <select id="sort-select-women" onchange="setSort('women', this.value)" class="bg-[#121212] text-white text-xs border border-white/20 rounded-lg px-3 py-1.5 sm:py-2 focus:ring-1 focus:ring-volt outline-none">
                   <option value="none">المقترح</option>
                   <option value="asc">الأقل سعراً</option>
                   <option value="desc">الأعلى سعراً</option>
@@ -1106,28 +1127,28 @@
       const app = document.getElementById('app');
       app.innerHTML = `
         <div class="page-fade">
-          <!-- Top Banner (60vh) - Text INSIDE prod-weights -->
-          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+          <!-- Top Banner (45vh on mobile, 60vh on desktop) -->
+          <section class="relative w-full h-[45vh] sm:h-[60vh] flex items-center overflow-hidden">
             <img src="images/prod-weights.jfif" alt="تجهيزات رياضية" class="absolute inset-0 w-full h-full object-cover object-center z-0 filter brightness-90" />
             <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
             <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
             <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
-              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+              <span class="text-xs font-black uppercase text-black bg-volt px-2.5 sm:px-3 py-1 rounded-md mb-2 sm:mb-3 inline-block font-heading">
                 قوة لا تراجع فيها
               </span>
-              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+              <h1 class="text-3xl sm:text-6xl font-black text-white font-heading mb-2 sm:mb-3">
                 تجهيزات <span class="text-volt">رياضية</span>
               </h1>
-              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              <p class="text-gray-300 text-xs sm:text-base max-w-xl leading-relaxed">
                 معدات رفع أثقال وتدريب وظيفي مصممة لتحمّل أقسى الأحمال وضمان أعلى مستويات الأمان.
               </p>
             </div>
           </section>
 
           <!-- Special Section: "Build Your Home Gym" (Text INSIDE zoomed prod-weights overlay) -->
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal-on-scroll">
-            <div class="relative rounded-3xl overflow-hidden min-h-[460px] p-8 sm:p-12 border border-white/10 shadow-2xl flex flex-col justify-center">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 reveal-on-scroll">
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[460px] p-5 sm:p-12 border border-white/10 shadow-2xl flex flex-col justify-center">
               <img src="images/prod-weights.jfif" alt="جهّز ناديك المنزلي" loading="lazy" class="absolute inset-0 w-full h-full object-cover scale-125 z-0 filter brightness-65" />
               <div class="absolute inset-0 bg-gradient-to-r from-black/95 via-black/85 to-black/50 z-10"></div>
               <div class="absolute inset-0 sport-pattern z-10 opacity-25"></div>
@@ -1136,41 +1157,41 @@
                 <span class="text-volt font-bold text-xs uppercase tracking-widest block mb-2 font-heading">
                   نادي احترافي بين جدرانك
                 </span>
-                <h2 class="text-3xl sm:text-5xl font-black text-white font-heading mb-6">
+                <h2 class="text-2xl sm:text-5xl font-black text-white font-heading mb-4 sm:mb-6">
                   جهّز ناديك <span class="text-volt">المنزلي</span>
                 </h2>
 
                 <!-- 3 Short Paragraphs -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-sm text-gray-200">
-                  <div class="bg-black/50 backdrop-blur-sm p-4 rounded-xl border border-white/10">
-                    <h3 class="font-black text-volt mb-1">استغلال مثالي للمساحة</h3>
-                    <p class="text-xs text-gray-300">أوزان ذكية تعوّض 15 زوج دمبل تقليدي وتوفر 80% من المساحة.</p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-6 sm:mb-8 text-xs sm:text-sm text-gray-200">
+                  <div class="bg-black/50 backdrop-blur-sm p-3.5 sm:p-4 rounded-xl border border-white/10">
+                    <h3 class="font-black text-volt mb-1 text-sm sm:text-base">استغلال مثالي للمساحة</h3>
+                    <p class="text-[11px] sm:text-xs text-gray-300">أوزان ذكية تعوّض 15 زوج دمبل تقليدي وتوفر 80% من المساحة.</p>
                   </div>
-                  <div class="bg-black/50 backdrop-blur-sm p-4 rounded-xl border border-white/10">
-                    <h3 class="font-black text-volt mb-1">عزل صوتي وحماية</h3>
-                    <p class="text-xs text-gray-300">طلاء مطاطي صامت عالي الكثافة يحمي الأرضيات من الصدمات والخدوش.</p>
+                  <div class="bg-black/50 backdrop-blur-sm p-3.5 sm:p-4 rounded-xl border border-white/10">
+                    <h3 class="font-black text-volt mb-1 text-sm sm:text-base">عزل صوتي وحماية</h3>
+                    <p class="text-[11px] sm:text-xs text-gray-300">طلاء مطاطي صامت عالي الكثافة يحمي الأرضيات من الصدمات والخدوش.</p>
                   </div>
-                  <div class="bg-black/50 backdrop-blur-sm p-4 rounded-xl border border-white/10">
-                    <h3 class="font-black text-volt mb-1">تدريب وظيفي متكامل</h3>
-                    <p class="text-xs text-gray-300">باقات تجمع بين المقاومة والتوازن وبناء الكتلة العضلية الصلبة.</p>
+                  <div class="bg-black/50 backdrop-blur-sm p-3.5 sm:p-4 rounded-xl border border-white/10">
+                    <h3 class="font-black text-volt mb-1 text-sm sm:text-base">تدريب وظيفي متكامل</h3>
+                    <p class="text-[11px] sm:text-xs text-gray-300">باقات تجمع بين المقاومة والتوازن وبناء الكتلة العضلية الصلبة.</p>
                   </div>
                 </div>
 
                 <!-- 3 Distinct Numbers (Guarantees) -->
-                <div class="flex flex-wrap items-center gap-6 sm:gap-10 border-t border-white/15 pt-6">
+                <div class="grid grid-cols-3 gap-2 sm:flex sm:items-center sm:gap-10 border-t border-white/15 pt-5 sm:pt-6 text-center sm:text-right">
                   <div>
-                    <span class="text-2xl sm:text-3xl font-black text-volt font-heading">سنتين</span>
-                    <span class="block text-xs text-gray-300">ضمان شامل معتمد</span>
+                    <span class="text-xl sm:text-3xl font-black text-volt font-heading block">سنتين</span>
+                    <span class="block text-[11px] sm:text-xs text-gray-300">ضمان معتمد</span>
                   </div>
-                  <div class="w-px h-8 bg-white/20"></div>
+                  <div class="hidden sm:block w-px h-8 bg-white/20"></div>
                   <div>
-                    <span class="text-2xl sm:text-3xl font-black text-volt font-heading">100%</span>
-                    <span class="block text-xs text-gray-300">فولاذ صناعي معالج</span>
+                    <span class="text-xl sm:text-3xl font-black text-volt font-heading block">100%</span>
+                    <span class="block text-[11px] sm:text-xs text-gray-300">فولاذ صناعي</span>
                   </div>
-                  <div class="w-px h-8 bg-white/20"></div>
+                  <div class="hidden sm:block w-px h-8 bg-white/20"></div>
                   <div>
-                    <span class="text-2xl sm:text-3xl font-black text-volt font-heading">0 ر.س</span>
-                    <span class="block text-xs text-gray-300">توصيل وتركيب مجاني</span>
+                    <span class="text-xl sm:text-3xl font-black text-volt font-heading block">0 ر.س</span>
+                    <span class="block text-[11px] sm:text-xs text-gray-300">توصيل مجاني</span>
                   </div>
                 </div>
 
@@ -1179,52 +1200,52 @@
           </section>
 
           <!-- Products Grid -->
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-            <div class="text-right mb-8">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+            <div class="text-right mb-6 sm:mb-8">
               <h2 class="text-2xl sm:text-4xl font-black text-white font-heading">
                 أحدث معدات <span class="text-volt">اللياقة والقوة</span>
               </h2>
             </div>
-            <div id="category-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="category-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
               <!-- JS rendered -->
             </div>
           </section>
 
           <!-- "How to Choose Your Equipment" in 3 Steps with Icons -->
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 reveal-on-scroll">
-            <div class="bg-neutral-950 border border-white/10 rounded-3xl p-8 sm:p-12 text-right">
-              <h2 class="text-2xl sm:text-3xl font-black text-white font-heading mb-10 text-center">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 reveal-on-scroll">
+            <div class="bg-neutral-950 border border-white/10 rounded-2xl sm:rounded-3xl p-5 sm:p-12 text-right">
+              <h2 class="text-xl sm:text-3xl font-black text-white font-heading mb-8 sm:mb-10 text-center">
                 كيف تختار <span class="text-volt">تجهيزاتك</span> الرياضية في 3 خطوات
               </h2>
               
-              <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-8">
                 <!-- Step 1 -->
-                <div class="relative bg-white/5 p-6 rounded-2xl border border-white/10">
+                <div class="relative bg-white/5 p-5 sm:p-6 rounded-2xl border border-white/10">
                   <span class="absolute -top-3 right-6 bg-volt text-black text-xs font-black px-2.5 py-0.5 rounded font-heading">01</span>
-                  <div class="w-12 h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-3 sm:mb-4">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg>
                   </div>
-                  <h3 class="text-lg font-bold text-white font-heading mb-2">حدد هدفك الأساسي</h3>
+                  <h3 class="text-base sm:text-lg font-bold text-white font-heading mb-1.5 sm:mb-2">حدد هدفك الأساسي</h3>
                   <p class="text-xs text-gray-400 leading-relaxed">سواء كنت تستهدف بناء القوة العضلية أو التنشيف أو اللياقة القلبية التنفسية.</p>
                 </div>
 
                 <!-- Step 2 -->
-                <div class="relative bg-white/5 p-6 rounded-2xl border border-white/10">
+                <div class="relative bg-white/5 p-5 sm:p-6 rounded-2xl border border-white/10">
                   <span class="absolute -top-3 right-6 bg-volt text-black text-xs font-black px-2.5 py-0.5 rounded font-heading">02</span>
-                  <div class="w-12 h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-3 sm:mb-4">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"/></svg>
                   </div>
-                  <h3 class="text-lg font-bold text-white font-heading mb-2">قياس المساحة المتاحة</h3>
+                  <h3 class="text-base sm:text-lg font-bold text-white font-heading mb-1.5 sm:mb-2">قياس المساحة المتاحة</h3>
                   <p class="text-xs text-gray-400 leading-relaxed">اختر المعدات متعددة الاستخدامات مثل الأوزان القابلة للتعديل إذا كانت المساحة محدودة.</p>
                 </div>
 
                 <!-- Step 3 -->
-                <div class="relative bg-white/5 p-6 rounded-2xl border border-white/10">
+                <div class="relative bg-white/5 p-5 sm:p-6 rounded-2xl border border-white/10">
                   <span class="absolute -top-3 right-6 bg-volt text-black text-xs font-black px-2.5 py-0.5 rounded font-heading">03</span>
-                  <div class="w-12 h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-4">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
+                  <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-volt/10 text-volt flex items-center justify-center mb-3 sm:mb-4">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"/></svg>
                   </div>
-                  <h3 class="text-lg font-bold text-white font-heading mb-2">اختر الضمان المعتمد</h3>
+                  <h3 class="text-base sm:text-lg font-bold text-white font-heading mb-1.5 sm:mb-2">اختر الضمان المعتمد</h3>
                   <p class="text-xs text-gray-400 leading-relaxed">جميع تجهيزات VoltEdge مشمولة بضمان استبدال مباشر لمدة عامين كاملين.</p>
                 </div>
               </div>
@@ -1242,46 +1263,46 @@
       const app = document.getElementById('app');
       app.innerHTML = `
         <div class="page-fade">
-          <!-- Top Banner (60vh) - Text INSIDE hero-sports.jfif -->
-          <section class="relative w-full h-[60vh] flex items-center overflow-hidden">
+          <!-- Top Banner (45vh on mobile, 60vh on desktop) -->
+          <section class="relative w-full h-[45vh] sm:h-[60vh] flex items-center overflow-hidden">
             <img src="images/hero-sports.jfif" alt="المجموعة النشطة - إصدار محدود" class="absolute inset-0 w-full h-full object-cover object-top z-0 filter brightness-85" />
             <div class="absolute inset-0 bg-gradient-to-l from-black/95 via-black/60 to-transparent z-10"></div>
             <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
             <div class="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full text-right">
-              <span class="text-xs font-black uppercase text-black bg-volt px-3 py-1 rounded-md mb-3 inline-block font-heading">
+              <span class="text-xs font-black uppercase text-black bg-volt px-2.5 sm:px-3 py-1 rounded-md mb-2 sm:mb-3 inline-block font-heading">
                 إصدار حصري محدود 2026
               </span>
-              <h1 class="text-4xl sm:text-6xl font-black text-white font-heading mb-3">
+              <h1 class="text-3xl sm:text-6xl font-black text-white font-heading mb-2 sm:mb-3">
                 المجموعة النشطة — <span class="text-volt">إصدار محدود</span>
               </h1>
-              <p class="text-gray-300 text-sm sm:text-base max-w-xl leading-relaxed">
+              <p class="text-gray-300 text-xs sm:text-base max-w-xl leading-relaxed">
                 باقات تم تجميعها بعناية لتمنحك العتاد الأقوى بخصم استثنائي قبل نفاد الكمية المقررة لهذا الشهر.
               </p>
             </div>
           </section>
 
           <!-- Countdown Banner for Limited Time Offer -->
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 relative z-20">
-            <div class="bg-[#121212] border-2 border-volt/50 rounded-2xl p-6 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
-              <div class="text-right">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-20">
+            <div class="bg-[#121212] border-2 border-volt/50 rounded-2xl p-4 sm:p-6 shadow-2xl flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-6">
+              <div class="text-center sm:text-right">
                 <span class="text-xs font-bold text-volt uppercase">عرض حصري ينتهي قريبًا</span>
-                <h3 class="text-xl sm:text-2xl font-black text-white font-heading">خصم يصل إلى 35% على جميع الباقات</h3>
+                <h3 class="text-lg sm:text-2xl font-black text-white font-heading">خصم يصل إلى 35% على جميع الباقات</h3>
               </div>
               <!-- Timer boxes -->
-              <div class="flex items-center gap-3 font-heading font-black">
-                <div class="bg-black/80 border border-white/10 px-4 py-2.5 rounded-xl text-center min-w-[70px]">
-                  <span id="count-hours" class="text-2xl sm:text-3xl text-volt block">24</span>
+              <div class="flex items-center gap-2 sm:gap-3 font-heading font-black">
+                <div class="bg-black/80 border border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-center min-w-[56px] sm:min-w-[70px]">
+                  <span id="count-hours" class="text-xl sm:text-3xl text-volt block">24</span>
                   <span class="text-[10px] text-gray-400 font-sans">ساعة</span>
                 </div>
-                <span class="text-volt text-2xl">:</span>
-                <div class="bg-black/80 border border-white/10 px-4 py-2.5 rounded-xl text-center min-w-[70px]">
-                  <span id="count-mins" class="text-2xl sm:text-3xl text-volt block">45</span>
+                <span class="text-volt text-xl sm:text-2xl">:</span>
+                <div class="bg-black/80 border border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-center min-w-[56px] sm:min-w-[70px]">
+                  <span id="count-mins" class="text-xl sm:text-3xl text-volt block">45</span>
                   <span class="text-[10px] text-gray-400 font-sans">دقيقة</span>
                 </div>
-                <span class="text-volt text-2xl">:</span>
-                <div class="bg-black/80 border border-white/10 px-4 py-2.5 rounded-xl text-center min-w-[70px]">
-                  <span id="count-secs" class="text-2xl sm:text-3xl text-volt block">30</span>
+                <span class="text-volt text-xl sm:text-2xl">:</span>
+                <div class="bg-black/80 border border-white/10 px-3 sm:px-4 py-2 sm:py-2.5 rounded-xl text-center min-w-[56px] sm:min-w-[70px]">
+                  <span id="count-secs" class="text-xl sm:text-3xl text-volt block">30</span>
                   <span class="text-[10px] text-gray-400 font-sans">ثانية</span>
                 </div>
               </div>
@@ -1289,17 +1310,17 @@
           </section>
 
           <!-- 3 Large Bundle Cards (Text & Price ON TOP of Full Image) -->
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div class="text-right mb-10">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+            <div class="text-right mb-6 sm:mb-10">
               <span class="text-volt font-bold text-xs uppercase tracking-widest">توفير حقيقي وأداء مضاعف</span>
-              <h2 class="text-3xl sm:text-5xl font-black text-white font-heading mt-2">
+              <h2 class="text-2xl sm:text-5xl font-black text-white font-heading mt-2">
                 اختر <span class="text-volt">باقتك</span> الرياضية
               </h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               ${BUNDLES.map(bundle => `
-                <div class="group relative rounded-3xl overflow-hidden min-h-[500px] flex flex-col justify-end p-8 border border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-volt/50">
+                <div class="group relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[420px] sm:min-h-[500px] flex flex-col justify-end p-5 sm:p-8 border border-white/10 shadow-2xl transition-all duration-300 hover:-translate-y-2 hover:border-volt/50">
                   <!-- Background Image -->
                   <img src="${bundle.image}" alt="${bundle.name}" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 transition-transform duration-700 group-hover:scale-108" />
                   
@@ -1308,22 +1329,22 @@
                   <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
                   <!-- Badge -->
-                  <div class="absolute top-6 right-6 z-20">
+                  <div class="absolute top-4 sm:top-6 right-4 sm:right-6 z-20">
                     <span class="bg-volt text-black text-xs font-black px-3 py-1 rounded-full font-heading">وفر ${bundle.oldPrice - bundle.price} ر.س</span>
                   </div>
 
                   <!-- Text Over Image -->
                   <div class="relative z-20 text-right">
-                    <h3 class="text-2xl sm:text-3xl font-black text-white font-heading mb-2">${bundle.name}</h3>
-                    <p class="text-xs sm:text-sm text-gray-300 mb-4 leading-relaxed">${bundle.items}</p>
+                    <h3 class="text-xl sm:text-3xl font-black text-white font-heading mb-1.5 sm:mb-2">${bundle.name}</h3>
+                    <p class="text-xs sm:text-sm text-gray-300 mb-3 sm:mb-4 leading-relaxed">${bundle.items}</p>
                     
-                    <div class="flex items-center gap-3 mb-6">
-                      <span class="text-3xl font-black text-volt font-heading">${bundle.price} <span class="text-xs font-normal text-white">ر.س</span></span>
-                      <span class="text-sm text-gray-400 line-through">${bundle.oldPrice} ر.س</span>
+                    <div class="flex items-center gap-3 mb-4 sm:mb-6">
+                      <span class="text-2xl sm:text-3xl font-black text-volt font-heading">${bundle.price} <span class="text-xs font-normal text-white">ر.س</span></span>
+                      <span class="text-xs sm:text-sm text-gray-400 line-through">${bundle.oldPrice} ر.س</span>
                     </div>
 
-                    <button onclick="addToCart(${bundle.id})" class="w-full bg-volt text-[#0A0A0A] font-black text-sm py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading flex items-center justify-center gap-2">
-                      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
+                    <button onclick="addToCart(${bundle.id})" class="w-full bg-volt text-[#0A0A0A] font-black text-xs sm:text-sm py-3 sm:py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading flex items-center justify-center gap-2">
+                      <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/></svg>
                       <span>احصل على الباقة الآن</span>
                     </button>
                   </div>
@@ -1333,24 +1354,24 @@
           </section>
 
           <!-- Newsletter Subscription in a Section with Background Image -->
-          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 mb-16 reveal-on-scroll">
-            <div class="relative rounded-3xl overflow-hidden min-h-[340px] flex items-center justify-center p-8 sm:p-14 border border-white/10 shadow-2xl text-center">
+          <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 mb-12 sm:mb-16 reveal-on-scroll">
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[300px] sm:min-h-[340px] flex items-center justify-center p-6 sm:p-14 border border-white/10 shadow-2xl text-center">
               <img src="images/prod-protein.jfif" alt="اشترك في نشرة العروض" loading="lazy" class="absolute inset-0 w-full h-full object-cover z-0 filter brightness-40" />
               <div class="absolute inset-0 bg-black/70 z-10"></div>
               <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
               <div class="relative z-20 max-w-xl mx-auto">
                 <span class="text-xs font-bold text-volt uppercase tracking-wider block mb-2 font-heading">كن أول من يعلم</span>
-                <h3 class="text-3xl sm:text-4xl font-black text-white font-heading mb-4">
+                <h3 class="text-2xl sm:text-4xl font-black text-white font-heading mb-3 sm:mb-4">
                   اشترك في نادي <span class="text-volt">VoltEdge</span>
                 </h3>
-                <p class="text-gray-300 text-sm mb-6 leading-relaxed">
+                <p class="text-gray-300 text-xs sm:text-sm mb-5 sm:mb-6 leading-relaxed">
                   احصل على كود خصم 15% على طلبك القادم ودعوات حصرية لإصدارات التشكيلات الجديدة قبل الجميع.
                 </p>
 
                 <form onsubmit="event.preventDefault(); showToast('تم اشتراكك بنجاح! شكرًا لك'); this.reset();" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                  <input type="email" required placeholder="أدخل بريدك الإلكتروني" class="flex-1 bg-black/80 border border-white/20 rounded-xl px-4 py-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-volt" />
-                  <button type="submit" class="bg-volt text-[#0A0A0A] font-black px-6 py-3 rounded-xl hover:bg-volt-hover transition font-heading">
+                  <input type="email" required placeholder="أدخل بريدك الإلكتروني" class="flex-1 bg-black/80 border border-white/20 rounded-xl px-4 py-2.5 sm:py-3 text-sm text-white placeholder-gray-400 focus:outline-none focus:border-volt" />
+                  <button type="submit" class="bg-volt text-[#0A0A0A] font-black px-6 py-2.5 sm:py-3 rounded-xl hover:bg-volt-hover transition font-heading text-sm">
                     انضم الآن
                   </button>
                 </form>
@@ -1371,25 +1392,25 @@
       if (cart.length === 0) {
         // Empty State: prod-shoe background with message
         app.innerHTML = `
-          <div class="page-fade max-w-4xl mx-auto px-4 py-20 text-center">
-            <div class="relative rounded-3xl overflow-hidden min-h-[460px] flex items-center justify-center p-8 border border-white/10 shadow-2xl">
+          <div class="page-fade max-w-4xl mx-auto px-4 py-12 sm:py-20 text-center">
+            <div class="relative rounded-2xl sm:rounded-3xl overflow-hidden min-h-[380px] sm:min-h-[460px] flex items-center justify-center p-6 sm:p-8 border border-white/10 shadow-2xl">
               <img src="images/prod-shoe.jfif" alt="سلتك فارغة" class="absolute inset-0 w-full h-full object-cover filter brightness-35 z-0" />
               <div class="absolute inset-0 bg-black/70 z-10"></div>
               <div class="absolute inset-0 sport-pattern z-10 opacity-30"></div>
 
               <div class="relative z-20 max-w-md">
-                <div class="w-20 h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-6 text-volt">
-                  <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-4 sm:mb-6 text-volt">
+                  <svg class="w-8 h-8 sm:w-10 sm:h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"/>
                   </svg>
                 </div>
-                <h2 class="text-3xl font-black text-white font-heading mb-2">سلتك <span class="text-volt">فارغة</span> حالياً</h2>
-                <p class="text-gray-300 text-sm mb-8 leading-relaxed">
+                <h2 class="text-2xl sm:text-3xl font-black text-white font-heading mb-2">سلتك <span class="text-volt">فارغة</span> حالياً</h2>
+                <p class="text-gray-300 text-xs sm:text-sm mb-6 sm:mb-8 leading-relaxed">
                   لم تقم بإضافة أي عتاد رياضي بعد. استكشف تشكيلاتنا الاستثنائية وجهّز نفسك للتمرين القادم!
                 </p>
-                <a href="#/home" class="inline-flex items-center gap-2 bg-volt text-[#0A0A0A] font-black text-base px-8 py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading">
+                <a href="#/home" class="inline-flex items-center gap-2 bg-volt text-[#0A0A0A] font-black text-sm sm:text-base px-6 sm:px-8 py-3 sm:py-3.5 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-xl font-heading">
                   <span>العودة للتسوق</span>
-                  <span class="text-lg">←</span>
+                  <span class="text-base sm:text-lg">←</span>
                 </a>
               </div>
             </div>
@@ -1403,37 +1424,37 @@
       const total = subtotal + shipping;
 
       app.innerHTML = `
-        <div class="page-fade max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="page-fade max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
           
-          <div class="text-right mb-8">
-            <h1 class="text-3xl sm:text-5xl font-black text-white font-heading">
+          <div class="text-right mb-6 sm:mb-8">
+            <h1 class="text-2xl sm:text-5xl font-black text-white font-heading">
               سلة التسوق <span class="text-volt">وإتمام الشراء</span>
             </h1>
-            <p class="text-sm text-gray-400 mt-1">لديك ${cart.length} منتجات في السلة</p>
+            <p class="text-xs sm:text-sm text-gray-400 mt-1">لديك ${cart.length} منتجات في السلة</p>
           </div>
 
-          <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10">
             
             <!-- Left Column: Cart Items List -->
             <div class="lg:col-span-7 space-y-4">
-              <div class="bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-xl space-y-4">
+              <div class="bg-[#121212] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl space-y-3 sm:space-y-4">
                 ${cart.map(item => `
-                  <div class="flex items-center justify-between gap-4 py-4 border-b border-white/10 last:border-0">
+                  <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 py-3 sm:py-4 border-b border-white/10 last:border-0">
                     
                     <!-- Item image and details -->
-                    <div class="flex items-center gap-4 text-right flex-1">
-                      <div class="w-20 h-20 rounded-xl overflow-hidden bg-neutral-900 border border-white/10 shrink-0">
+                    <div class="flex items-center gap-3 sm:gap-4 text-right flex-1 min-w-0">
+                      <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-xl overflow-hidden bg-neutral-900 border border-white/10 shrink-0">
                         <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover" />
                       </div>
-                      <div>
-                        <h3 class="text-base font-black text-white font-heading mb-1 line-clamp-1">${item.name}</h3>
-                        <p class="text-xs text-gray-400 mb-1">التقييم: <span class="text-volt">★ ${item.rating}</span></p>
-                        <span class="text-sm font-black text-volt font-heading">${item.price} <span class="text-xs font-normal text-gray-300">ر.س</span></span>
+                      <div class="min-w-0 flex-1">
+                        <h3 class="text-sm sm:text-base font-black text-white font-heading mb-0.5 truncate">${item.name}</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-400 mb-1">التقييم: <span class="text-volt font-bold">★ ${item.rating}</span></p>
+                        <span class="text-sm sm:text-base font-black text-volt font-heading">${item.price} <span class="text-xs font-normal text-gray-300">ر.س</span></span>
                       </div>
                     </div>
 
                     <!-- Quantity controls and Delete -->
-                    <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-between sm:justify-end gap-3 pt-2 sm:pt-0 border-t border-white/5 sm:border-0">
                       <div class="flex items-center bg-black/60 border border-white/10 rounded-lg overflow-hidden">
                         <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 flex items-center justify-center text-white hover:text-volt hover:bg-white/5 transition" aria-label="تقليل الكمية">-</button>
                         <span class="w-8 text-center text-xs font-bold text-white">${item.quantity}</span>
@@ -1450,8 +1471,8 @@
               </div>
 
               <!-- Extra Trust notice -->
-              <div class="bg-white/5 border border-white/10 rounded-xl p-4 flex items-center gap-3 text-right">
-                <span class="text-volt text-xl">🛡️</span>
+              <div class="bg-white/5 border border-white/10 rounded-xl p-3.5 sm:p-4 flex items-center gap-3 text-right">
+                <span class="text-volt text-lg sm:text-xl">🛡️</span>
                 <p class="text-xs text-gray-300">
                   جميع الشحنات مؤمّنة بالكامل وضمان استرجاع بدون أي تعقيدات خلال 14 يوماً من الاستلام.
                 </p>
@@ -1459,13 +1480,13 @@
             </div>
 
             <!-- Right Column: Shipping Form & Order Summary -->
-            <div class="lg:col-span-5 space-y-6">
+            <div class="lg:col-span-5 space-y-4 sm:space-y-6">
               
               <!-- Order Summary -->
-              <div class="bg-[#121212] border border-white/10 rounded-2xl p-6 shadow-xl text-right">
-                <h3 class="text-lg font-black text-white font-heading mb-4 border-b border-white/10 pb-3">ملخص الطلب</h3>
+              <div class="bg-[#121212] border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl text-right">
+                <h3 class="text-base sm:text-lg font-black text-white font-heading mb-4 border-b border-white/10 pb-3">ملخص الطلب</h3>
                 
-                <div class="space-y-3 text-sm text-gray-300 mb-6">
+                <div class="space-y-2.5 sm:space-y-3 text-xs sm:text-sm text-gray-300 mb-5 sm:mb-6">
                   <div class="flex justify-between">
                     <span>مجموع المنتجات:</span>
                     <span class="font-bold text-white font-heading">${subtotal} ر.س</span>
@@ -1475,30 +1496,30 @@
                     <span class="text-volt font-bold">مجاني</span>
                   </div>
                   <div class="border-t border-white/10 pt-3 flex justify-between items-center">
-                    <span class="text-base font-black text-white font-heading">الإجمالي النهائي:</span>
-                    <span class="text-2xl font-black text-volt font-heading">${total} <span class="text-xs font-normal text-white">ر.س</span></span>
+                    <span class="text-sm sm:text-base font-black text-white font-heading">الإجمالي النهائي:</span>
+                    <span class="text-xl sm:text-2xl font-black text-volt font-heading">${total} <span class="text-xs font-normal text-white">ر.س</span></span>
                   </div>
                 </div>
 
                 <!-- Shipping Form with Arabic Validation -->
-                <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-4">
-                  <h4 class="text-sm font-bold text-gray-200 border-r-2 border-volt pr-2">بيانات الشحن والتوصيل</h4>
+                <form id="checkout-form" onsubmit="handleCheckout(event)" class="space-y-3 sm:space-y-4">
+                  <h4 class="text-xs sm:text-sm font-bold text-gray-200 border-r-2 border-volt pr-2">بيانات الشحن والتوصيل</h4>
                   
                   <div>
                     <label for="cust-name" class="block text-xs text-gray-400 mb-1">الاسم الكامل *</label>
-                    <input id="cust-name" type="text" required placeholder="محمد عبد الله" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                    <input id="cust-name" type="text" required placeholder="محمد عبد الله" class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
                   </div>
 
                   <div>
                     <label for="cust-phone" class="block text-xs text-gray-400 mb-1">رقم الجوال *</label>
-                    <input id="cust-phone" type="tel" required pattern="^05[0-9]{8}$" placeholder="05XXXXXXXX" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                    <input id="cust-phone" type="tel" required pattern="^05[0-9]{8}$" placeholder="05XXXXXXXX" class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
                     <span class="text-[10px] text-gray-400">مثال: 0512345678</span>
                   </div>
 
-                  <div class="grid grid-cols-2 gap-3">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
                       <label for="cust-city" class="block text-xs text-gray-400 mb-1">المدينة *</label>
-                      <select id="cust-city" required class="w-full bg-black/60 border border-white/15 rounded-xl px-3 py-2.5 text-sm text-white focus:outline-none focus:border-volt">
+                      <select id="cust-city" required class="w-full bg-black/60 border border-white/15 rounded-xl px-3 py-2 sm:py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-volt">
                         <option value="">اختر المدينة</option>
                         <option value="الرياض">الرياض</option>
                         <option value="جدة">جدة</option>
@@ -1510,16 +1531,16 @@
                     </div>
                     <div>
                       <label for="cust-district" class="block text-xs text-gray-400 mb-1">الحي *</label>
-                      <input id="cust-district" type="text" required placeholder="مثال: النرجس" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                      <input id="cust-district" type="text" required placeholder="مثال: النرجس" class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
                     </div>
                   </div>
 
                   <div>
                     <label for="cust-address" class="block text-xs text-gray-400 mb-1">العنوان بالتفصيل *</label>
-                    <input id="cust-address" type="text" required placeholder="اسم الشارع ورقم المبنى" class="w-full bg-black/60 border border-white/15 rounded-xl px-4 py-2.5 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
+                    <input id="cust-address" type="text" required placeholder="اسم الشارع ورقم المبنى" class="w-full bg-black/60 border border-white/15 rounded-xl px-3.5 py-2 sm:py-2.5 text-xs sm:text-sm text-white placeholder-gray-500 focus:outline-none focus:border-volt" />
                   </div>
 
-                  <button type="submit" class="w-full mt-4 bg-volt text-[#0A0A0A] font-black text-base py-4 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-2xl font-heading flex items-center justify-center gap-2">
+                  <button type="submit" class="w-full mt-3 sm:mt-4 bg-volt text-[#0A0A0A] font-black text-sm sm:text-base py-3.5 sm:py-4 rounded-xl hover:bg-volt-hover active:scale-95 transition shadow-2xl font-heading flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
                     <span>إتمام الطلب الآن (الدفع عند الاستلام)</span>
                   </button>
